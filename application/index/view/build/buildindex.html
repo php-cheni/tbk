@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="{$config.icon}">
+    <title>{$config.webname}</title>
+    <meta name='keywords' content='{$config.keywords}' />
+    <meta name='description' content='{$config.description}' />
+</head>
+
+<body>
+    {include file="public/header" /}
+
+    <div class='background'>
+        <input type="radio" name="slider" class="slide-radio1" checked id="slider_1">
+        <input type="radio" name="slider" class="slide-radio2" id="slider_2">
+        <input type="radio" name="slider" class="slide-radio3" id="slider_3">
+        <input type="radio" name="slider" class="slide-radio4" id="slider_4">
+        <div class="slider-pagination">
+            <label for="slider_1" class="page1"></label>
+            <label for="slider_2" class="page2"></label>
+            <label for="slider_3" class="page3"></label>
+            <label for="slider_4" class="page4"></label>
+        </div>
+        <div class="next control">
+            <label for="slider_1" class="numb1"><i class="iconfont icon-jiantou-you"></i></label>
+            <label for="slider_2" class="numb2"><i class="iconfont icon-jiantou-you"></i></label>
+            <label for="slider_3" class="numb3"><i class="iconfont icon-jiantou-you"></i></label>
+            <label for="slider_4" class="numb4"><i class="iconfont icon-jiantou-you"></i></label>
+        </div>
+        <div class="previous control">
+            <label for="slider_1" class="numb1"><i class="iconfont icon-jiantou-zuo"></i></label>
+            <label for="slider_2" class="numb2"><i class="iconfont icon-jiantou-zuo"></i></label>
+            <label for="slider_3" class="numb3"><i class="iconfont icon-jiantou-zuo"></i></label>
+            <label for="slider_4" class="numb4"><i class="iconfont icon-jiantou-zuo"></i></label>
+        </div>
+
+        {volist id='banner' name='banner'}
+        <div class="slider slide{$i}" style="background-image: url({$banner.img});">
+            <div>
+                <h2>{$banner.title}</h2>
+                <a href="{$banner.url}" class="button">查看详情</a>
+            </div>
+        </div>
+        {/volist}
+
+        <div class="shape circle"></div>
+        <div class="shape rectangle"></div>
+        <div class="shape triangle"></div>
+        <div class="shape square-round-three"></div>
+        <div class="shape square-round-one"></div>
+        <div class="shape square-round-two"></div>
+        <div class="shape circle-quarter-left-top"></div>
+        <div class="shape heart"></div>
+    </div>
+
+    <div class="contain">
+        <div class="left">
+            {volist id='article' name='article'}
+            <a href="/article/{:lockcode($article.id)}.html">
+                <div class="article">
+                    <h3>{$article.title}</h3>
+                    <div class="general_image_pic">
+                        <img src="{$article.img}" alt="{$article.title}">
+                        <div class="description">
+                            {$article.description}
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {/volist}
+
+            <div class="php54-link">
+                <span><i class="iconfont icon-lianjie1"></i> 友情链接</span>
+                <ul>
+                    {volist id='link' name='link'}
+                    <li>{$i}. <a href="{$link.url}" target="_blank" title="{$link.name}">{$link.name}</a></li>
+                    {/volist}
+                    <p style="clear:both"></p>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                    {volist id='recommoned' name='recommoned'}
+                    <li>{$i}. <a href="/article/{:lockcode($recommoned.id)}.html">{$recommoned.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                    {volist id='comment' name='comment'}
+                    <li>
+                        <img src="{$comment.headimg}" alt="{$comment.nickname}">
+                        <span>{$comment.content}</span>
+                        <span><i class="iconfont icon-ren"></i> {$comment.nickname}</span>
+                        <span><i class="iconfont icon-shijian"></i> {$comment.datetime}</span>
+                    </li>
+                    {/volist}
+                </ul>
+                <p style="clear:both"></p>
+            </div>
+
+        </div>
+
+        <p style="clear:both"></p>
+    </div>
+    {include file="public/footer" /}
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+
+</html>

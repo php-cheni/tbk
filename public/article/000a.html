@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>PHP所有内置的字符串函数（string）-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='PHP,字符串,内置函数,字符串函数,PHP教程,PHP字符串' />
+    <meta name='description' content='这里是PHP所有的字符串函数，便于大家查阅。由于这段时间都没有上班所以分享一下基础知识给大家。' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>PHP所有内置的字符串函数（string）</h3>
+            <div class="introduction">这里是PHP所有的字符串函数，便于大家查阅。由于这段时间都没有上班所以分享一下基础知识给大家。</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><div><h2>PHP 5 String 函数</h2><p>PHP 字符串函数是 PHP 核心的组成部分。无需安装即可使用这些函数。</p><table class="dataintable"><tbody><tr class="firstRow"><th>函数</th><th>描述</th></tr><tr><td>addcslashes()</td><td>返回在指定的字符前添加反斜杠的字符串。</td></tr><tr><td>addslashes()</td><td>返回在预定义的字符前添加反斜杠的字符串。</td></tr><tr><td>bin2hex()</td><td>把 ASCII 字符的字符串转换为十六进制值。</td></tr><tr><td>chop()</td><td>删除字符串右侧的空白字符或其他字符。</td></tr><tr><td>chr()</td><td>从指定的 ASCII 值返回字符。</td></tr><tr><td>chunk_split()</td><td>把字符串分割为一系列更小的部分。</td></tr><tr><td>convert_cyr_string()</td><td>把字符串由一种 Cyrillic 字符集转换为另一种。</td></tr><tr><td>convert_uudecode()</td><td>解码 uuencode 编码字符串。</td></tr><tr><td>convert_uuencode()</td><td>使用 uuencode 算法对字符串进行编码。</td></tr><tr><td>count_chars()</td><td>返回有关字符串中所用字符的信息。</td></tr><tr><td>crc32()</td><td>计算字符串的 32 位 CRC。</td></tr><tr><td>crypt()</td><td>单向的字符串加密法（hashing）。</td></tr><tr><td>echo()</td><td>输出一个或多个字符串。</td></tr><tr><td>explode()</td><td>把字符串打散为数组。</td></tr><tr><td>fprintf()</td><td>把格式化的字符串写入到指定的输出流。</td></tr><tr><td>get_html_translation_table()</td><td>返回由 htmlspecialchars() 和 htmlentities() 使用的翻译表。</td></tr><tr><td>hebrev()</td><td>把希伯来文本转换为可见文本。</td></tr><tr><td>hebrevc()</td><td>把希伯来文本转换为可见文本，并把新行（\n）转换为 &lt;br&gt;。</td></tr><tr><td>hex2bin()</td><td>把十六进制值的字符串转换为 ASCII 字符。</td></tr><tr><td>html_entity_decode()</td><td>把 HTML 实体转换为字符。</td></tr><tr><td>htmlentities()</td><td>把字符转换为 HTML 实体。</td></tr><tr><td>htmlspecialchars_decode()</td><td>把一些预定义的 HTML 实体转换为字符。</td></tr><tr><td>htmlspecialchars()</td><td>把一些预定义的字符转换为 HTML 实体。</td></tr><tr><td>implode()</td><td>返回由数组元素组合成的字符串。</td></tr><tr><td>join()</td><td>implode() 的别名。</td></tr><tr><td>lcfirst()</td><td>把字符串的首字符转换为小写。</td></tr><tr><td>levenshtein()</td><td>返回两个字符串之间的 Levenshtein 距离。</td></tr><tr><td>localeconv()</td><td>返回本地数字及货币格式信息。</td></tr><tr><td>ltrim()</td><td>移除字符串左侧的空白字符或其他字符。</td></tr><tr><td>md5()</td><td>计算字符串的 MD5 散列。</td></tr><tr><td>md5_file()</td><td>计算文件的 MD5 散列。</td></tr><tr><td>metaphone()</td><td>计算字符串的 metaphone 键。</td></tr><tr><td>money_format()</td><td>返回格式化为货币字符串的字符串。</td></tr><tr><td>nl_langinfo()</td><td>返回特定的本地信息。</td></tr><tr><td>nl2br()</td><td>在字符串中的每个新行之前插入 HTML 换行符。</td></tr><tr><td>number_format()</td><td>以千位分组来格式化数字。</td></tr><tr><td>ord()</td><td>返回字符串中第一个字符的 ASCII 值。</td></tr><tr><td>parse_str()</td><td>把查询字符串解析到变量中。</td></tr><tr><td>print()</td><td>输出一个或多个字符串。</td></tr><tr><td>printf()</td><td>输出格式化的字符串。</td></tr><tr><td>quoted_printable_decode()</td><td>把 quoted-printable 字符串转换为 8 位字符串。</td></tr><tr><td>quoted_printable_encode()</td><td>把 8 位字符串转换为 quoted-printable 字符串。</td></tr><tr><td>quotemeta()</td><td>引用元字符。</td></tr><tr><td>rtrim()</td><td>移除字符串右侧的空白字符或其他字符。</td></tr><tr><td>setlocale()</td><td>设置地区信息（地域信息）。</td></tr><tr><td>sha1()</td><td>计算字符串的 SHA-1 散列。</td></tr><tr><td>sha1_file()</td><td>计算文件的 SHA-1 散列。</td></tr><tr><td>similar_text()</td><td>计算两个字符串的相似度。</td></tr><tr><td>soundex()</td><td>计算字符串的 soundex 键。</td></tr><tr><td>sprintf()</td><td>把格式化的字符串写入变量中。</td></tr><tr><td>sscanf()</td><td>根据指定的格式解析来自字符串的输入。</td></tr><tr><td>str_getcsv()</td><td>把 CSV 字符串解析到数组中。</td></tr><tr><td>str_ireplace()</td><td>替换字符串中的一些字符（对大小写不敏感）。</td></tr><tr><td>str_pad()</td><td>把字符串填充为新的长度。</td></tr><tr><td>str_repeat()</td><td>把字符串重复指定的次数。</td></tr><tr><td>str_replace()</td><td>替换字符串中的一些字符（对大小写敏感）。</td></tr><tr><td>str_rot13()</td><td>对字符串执行 ROT13 编码。</td></tr><tr><td>str_shuffle()</td><td>随机地打乱字符串中的所有字符。</td></tr><tr><td>str_split()</td><td>把字符串分割到数组中。</td></tr><tr><td>str_word_count()</td><td>计算字符串中的单词数。</td></tr><tr><td>strcasecmp()</td><td>比较两个字符串（对大小写不敏感）。</td></tr><tr><td>strchr()</td><td>查找字符串在另一字符串中的第一次出现。（strstr() 的别名。）</td></tr><tr><td>strcmp()</td><td>比较两个字符串（对大小写敏感）。</td></tr><tr><td>strcoll()</td><td>比较两个字符串（根据本地设置）。</td></tr><tr><td>strcspn()</td><td>返回在找到某些指定字符的任何部分之前，在字符串中查找的字符数。</td></tr><tr><td>strip_tags()</td><td>剥去字符串中的 HTML 和 PHP 标签。</td></tr><tr><td>stripcslashes()</td><td>删除由 addcslashes() 函数添加的反斜杠。</td></tr><tr><td>stripslashes()</td><td>删除由 addslashes() 函数添加的反斜杠。</td></tr><tr><td>stripos()</td><td>返回字符串在另一字符串中第一次出现的位置（对大小写不敏感）。</td></tr><tr><td>stristr()</td><td>查找字符串在另一字符串中第一次出现的位置（大小写不敏感）。</td></tr><tr><td>strlen()</td><td>返回字符串的长度。</td></tr><tr><td>strnatcasecmp()</td><td>使用一种&quot;自然排序&quot;算法来比较两个字符串（对大小写不敏感）。</td></tr><tr><td>strnatcmp()</td><td>使用一种&quot;自然排序&quot;算法来比较两个字符串（对大小写敏感）。</td></tr><tr><td>strncasecmp()</td><td>前 n 个字符的字符串比较（对大小写不敏感）。</td></tr><tr><td>strncmp()</td><td>前 n 个字符的字符串比较（对大小写敏感）。</td></tr><tr><td>strpbrk()</td><td>在字符串中查找一组字符的任何一个字符。</td></tr><tr><td>strpos()</td><td>返回字符串在另一字符串中第一次出现的位置（对大小写敏感）。</td></tr><tr><td>strrchr()</td><td>查找字符串在另一个字符串中最后一次出现。</td></tr><tr><td>strrev()</td><td>反转字符串。</td></tr><tr><td>strripos()</td><td>查找字符串在另一字符串中最后一次出现的位置（对大小写不敏感）。</td></tr><tr><td>strrpos()</td><td>查找字符串在另一字符串中最后一次出现的位置（对大小写敏感）。</td></tr><tr><td>strspn()</td><td>返回在字符串中包含的特定字符的数目。</td></tr><tr><td>strstr()</td><td>查找字符串在另一字符串中的第一次出现（对大小写敏感）。</td></tr><tr><td>strtok()</td><td>把字符串分割为更小的字符串。</td></tr><tr><td>strtolower()</td><td>把字符串转换为小写字母。</td></tr><tr><td>strtoupper()</td><td>把字符串转换为大写字母。</td></tr><tr><td>strtr()</td><td>转换字符串中特定的字符。</td></tr><tr><td>substr()</td><td>返回字符串的一部分。</td></tr><tr><td>substr_compare()</td><td>从指定的开始位置（二进制安全和选择性区分大小写）比较两个字符串。</td></tr><tr><td>substr_count()</td><td>计算子串在字符串中出现的次数。</td></tr><tr><td>substr_replace()</td><td>把字符串的一部分替换为另一个字符串。</td></tr><tr><td>trim()</td><td>移除字符串两侧的空白字符和其他字符。</td></tr><tr><td>ucfirst()</td><td>把字符串中的首字符转换为大写。</td></tr><tr><td>ucwords()</td><td>把字符串中每个单词的首字符转换为大写。</td></tr><tr><td>vfprintf()</td><td>把格式化的字符串写到指定的输出流。</td></tr><tr><td>vprintf()</td><td>输出格式化的字符串。</td></tr><tr><td>vsprintf()</td><td>把格式化字符串写入变量中。</td></tr><tr><td>wordwrap()</td><td>打断字符串为指定数量的字串</td></tr></tbody></table></div></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

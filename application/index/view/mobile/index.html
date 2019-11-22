@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>后台管理</title>
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" >
+<link rel="stylesheet" href="/static/assets/css/fonts.googleapis.com.css" />
+<link rel="stylesheet" href="/static/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+<!--[if lte IE 9]>
+	<link rel="stylesheet" href="/static/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+<![endif]-->
+<link rel="stylesheet" href="/static/assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="/static/assets/css/ace-rtl.min.css" />
+<!--[if lte IE 9]>
+  <link rel="stylesheet" href="/static/assets/css/ace-ie.min.css" />
+<![endif]-->
+<script src="/static/assets/js/ace-extra.min.js"></script>
+<!--[if lte IE 8]>
+<script src="/static/assets/js/html5shiv.min.js"></script>
+<script src="/static/assets/js/respond.min.js"></script>
+<![endif]-->
+<style>
+	.even img{
+		max-width: 150px;
+	}
+	input[type=number] {  
+	    -moz-appearance:textfield;  
+	    width: 200px;
+	}  
+	input[type=number]::-webkit-inner-spin-button,  
+	input[type=number]::-webkit-outer-spin-button {  
+	    -webkit-appearance: none;  
+	    margin: 0;  
+	}  
+	button{
+	    border: none;
+		background-color: white;
+		outline: none;
+	    padding-left: 3px;
+	}
+</style>
+</head>
+<body class="no-skin">
+{include file="index/header" /}
+<div class="main-container ace-save-state" id="main-container">
+
+{include file="index/menu" /}
+
+<div class="main-content">
+<div class="main-content-inner">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li><i class="ace-icon fa fa-home home-icon"></i><a href="/youmei.php">首页</a></li>
+		<li><a href="{:url('mobile/index')}">移动管理</a></li>
+	</ul>
+	<div class="nav-search" id="nav-search">
+		<form class="form-search">
+			<span class="input-icon">
+				<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
+				<i class="ace-icon fa fa-search nav-search-icon"></i>
+			</span>
+		</form>
+	</div>
+</div>
+
+<div class="page-content">
+<div class="row">
+<div class="col-xs-12">
+<div class="row">
+<div class="col-xs-12">
+	<div>
+	<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer"><table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
+		<thead>
+		<tr role="row">
+			<th>页面名称</th>
+			<th>html目录</th>
+			<th>静态状态</th>
+			<th>操作</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		{volist name='page' id='page'}
+		<tr role="row" class="even">
+			<td>{$page.name}</td>
+			<td>{$page.html}</td>
+			<td>{$page.page}</td>
+			<td>
+				<div class="hidden-sm hidden-xs action-buttons">
+					<a class="green" href="javascript:;" onclick="build('{$key}',this)"><i class="ace-icon fa fa-file-code-o bigger-130"></i></a>
+					<a class="red" href="javascript:;" onclick="delpage('{$key}',this)"><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+				</div>
+			</td>
+		</tr>
+		{/volist}
+		<form class="form-horizontal layui-form">
+		<tr role="row" class="even">
+			<td>更新文章</td>
+			<td>/m/文章编号.html</td>
+			<td><input type="number" max="100" min="0" lay-verify="number" name="num" placeholder='生成数量/不填或0则全部更新'></td>
+			<td>
+				<div class="hidden-sm hidden-xs action-buttons">
+					<button class="green" lay-submit lay-filter="updatearticle" type="button"><i class="ace-icon fa fa-file-code-o bigger-130"></i></button>
+				</div>
+			</td>
+		</tr>
+		</form>
+		</tbody>
+	</table>
+
+	<div class="row">
+	<div class="col-xs-6">
+		<!-- <button class="btn btn-info buildallpage"  lay-submit lay-filter="buildindex" type="button"><i class="ace-icon fa fa-file-code-o bigger-110"></i>一键更新</button> -->
+	</div>
+	<div class="col-xs-6">
+		<div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate"></div></div>
+	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<!--[if !IE]> -->
+<script src="/static/assets/js/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+	<script src="/static/assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+<script type="text/javascript">if('ontouchstart' in document.documentElement) document.write("<script src='/static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");</script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+<!--[if lte IE 8]>
+  <script src="/static/assets/js/excanvas.min.js"></script>
+<![endif]-->
+<script src="/static/assets/js/jquery-ui.custom.min.js"></script>
+<script src="/static/assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/static/assets/js/jquery.easypiechart.min.js"></script>
+<script src="/static/assets/js/jquery.sparkline.index.min.js"></script>
+<script src="/static/assets/js/jquery.flot.min.js"></script>
+<script src="/static/assets/js/jquery.flot.pie.min.js"></script>
+<script src="/static/assets/js/jquery.flot.resize.min.js"></script>
+<script src="/static/assets/js/ace-elements.min.js"></script>
+<script src="/static/assets/js/ace.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
+<script type="text/javascript">
+function build(page,obj){
+  var load=layer.msg('正在更新...', {icon:16,shade:[0.1, '#fff'],time:false });
+  $.ajax({
+      url: "/youmei.php/mobile/build"+page,
+      type: "POST",
+      success: function(data){
+        layer.close(load);
+        if (data.success) {
+          $(obj).parents('tr').find('td:eq(2)').text('已生成静态文件');
+          layer.msg(data.success, {icon: 1,time: 1000});
+        }else{
+          layer.msg(data.msg, {icon: 5,time: 1000});
+        }   
+      }
+  });
+}
+
+function delpage(page,obj){
+  var load=layer.msg('正在删除...', {icon:16,shade:[0.1, '#fff'],time:false });
+  $.ajax({
+      url: "{:url('mobile/delpage')}",
+      type: "POST",
+      dataType:"json",
+      data:{page:page},
+      success: function(data){
+        layer.close(load);
+        if (data.success) {
+          $(obj).parents('tr').find('td:eq(2)').text('未生成静态文件');
+          layer.msg(data.success, {icon: 1,time: 1000});
+        }else{
+          layer.msg(data.msg, {icon: 5,time: 1000});
+        }   
+      }
+  });
+}
+
+var form = layui.form;
+form.on('submit(updatearticle)', function(data){
+	var load=layer.msg('正在更新...', {icon:16,shade:[0.1, '#fff'],time:false });
+	$.ajax({
+	    url: "{:url('mobile/buildcontent')}",
+	    type: "POST",
+	    dataType:"json",
+	    data:$("form").serialize(),
+	    success: function(data){
+	        layer.close(load);
+	        if (data.success) {
+	        	layer.msg(data.success, {icon: 1,time: 1000});
+	        }else{
+	            layer.msg(data.error, {icon: 5,time: 1000});
+	        }   
+	    }
+	});
+});
+</script>
+</body>
+</html>

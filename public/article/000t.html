@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>windows apache 部署SSL证书 https-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='https,windows,apache,SSL证书,证书部署 ' />
+    <meta name='description' content='博客里的内容及功能都在慢慢完善，今天把SSL证书部署了一下，虽然有过经验。但还是有点磕磕绊绊。总结一下，希望能帮到大家' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>windows apache 部署SSL证书 https</h3>
+            <div class="introduction">博客里的内容及功能都在慢慢完善，今天把SSL证书部署了一下，虽然有过经验。但还是有点磕磕绊绊。总结一下，希望能帮到大家</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">关于SSL证书的用处就不讲啦，需要部署的朋友应该已经了解过了，直接进入正题</span></p><p><br/></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;"><strong>第一步当然是获取证书啦</strong><br/></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">我是在腾讯云上申请的，很快几分钟就搞定了。</span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">域名验证通过后下载证书就行了</span></p><p><img src="/ueditor/php/upload/image/20180908/1536401025109515.png" title="1536401025109515.png" alt="image.png"/></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(102, 102, 102); font-size: 14px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">1_root_bundle.crt （证书链文件）&nbsp;</span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(102, 102, 102); font-size: 14px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">2_www.domain.com_cert.crt（证书文件）<br/></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(102, 102, 102); font-size: 14px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">3_www.domain.com.key（私钥文件）</span></p><p>把证书放到环境下&nbsp; 我是放在apache/cert下的&nbsp; cert这个文件夹是我自己创建的</p><p><br/></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;"><strong>第二步修改服务器的环境配置</strong></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-size: 12px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">第一个：找到【LoadModule ssl_module modules/mod_ssl.so】这一行，如果前面有#，去掉#，如果没有，就不需要改动，保持不变即可。</span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-size: 12px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;">第二个：找到【Include conf/extra/httpd-ssl.conf】这一行，如果前面有#，去掉#，如果没有，就不需要改动，保持不变即可。</span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="font-size: 12px; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;">#下面三行是配置证书文件，注意修改路径和对应文件名称，别搞混了</span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">SSLCertificateFile&nbsp; &nbsp; &nbsp; &quot;/phpStudy/<span style="color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif; font-size: 12px; text-align: justify; background-color: rgb(255, 255, 255);">PHPTutorial/</span>Apache/<span style="color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif; font-size: 12px; text-align: justify; background-color: rgb(255, 255, 255);">cert</span>/2_tktx.nichousha.cc.crt&quot;<br/></span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">SSLCertificateKeyFile&nbsp; &nbsp;&quot;/phpStudy/<span style="color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif; font-size: 12px; text-align: justify; background-color: rgb(255, 255, 255);">PHPTutorial/</span>Apache/<span style="color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif; font-size: 12px; text-align: justify; background-color: rgb(255, 255, 255);">cert</span>/3_tktx.nichousha.cc.key&quot;<br/></span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">SSLCertificateChainFile &quot;/phpStudy/<span style="color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif; font-size: 12px; text-align: justify; background-color: rgb(255, 255, 255);">PHPTutorial/</span>Apache/cert/1_root_bundle.crt&quot;</span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">cart+f&nbsp; 依次搜索然后替换后面的名字就可以了</span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);">还有就是修改站点目录，今天就踩了这个小坑</p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);">文件里很多处站点路径都不对需要修改</p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">SSLOptions +StdEnvVars<br/></span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">&lt;/FilesMatch&gt;<br/></span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 14px;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all;"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; font-size: 12px;">&lt;Directory &quot;C:\phpStudy\WWW&quot;&gt;&nbsp;</span></span></span></span></span></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-size: 12px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;"></span>比如这样的WWW这一块的路径，因为我用的是新版的PHPSTUDY 所以路径是<span style="color: rgb(51, 51, 51); font-family: &quot;Microsoft Yahei&quot;, 微软雅黑, arial, 宋体, sans-serif; font-size: 12px; text-align: justify; background-color: rgb(255, 255, 255);">\phpStudy\PHPTutorial\WWW&nbsp; 搜索错误的地方批量换一下就可以了</span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><strong>第三步&nbsp; 设置301跳转</strong></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);">我用的是.htaccess</p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><img src="/ueditor/php/upload/image/20180908/1536401619714628.png" title="1536401619714628.png" alt="image.png"/></p><p>&nbsp;RewriteBase /</p><p>&nbsp;RewriteCond %{SERVER_PORT} !^443$</p><p>&nbsp;RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]</p><p>里面加上了这一段就可以了</p><p><img src="/ueditor/php/upload/image/20180908/1536401771928238.png" title="1536401771928238.png" alt="image.png"/></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; outline: 0px; word-break: break-all; color: rgb(51, 51, 51); font-size: 12px; font-family: 微软雅黑, &quot;Microsoft YaHei&quot;;"></span></p><p style="box-sizing: border-box; outline: 0px; padding: 0px; margin-top: 0px; margin-bottom: 16px; color: rgb(79, 79, 79); line-height: 26px; text-align: justify; word-break: break-all; font-family: -apple-system, &quot;SF UI Text&quot;, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif, SimHei, SimSun; white-space: normal; background-color: rgb(255, 255, 255);">整个过程还是比较简单的，有不明白的地方可以留言告诉我，评论会通过邮件发送给我所以我会很快回复</p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

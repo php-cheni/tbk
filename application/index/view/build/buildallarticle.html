@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="{$config.icon}">
+    <title>{$detail.title}-{$config.webname}</title>
+    <meta name='keywords' content='{$detail.keywords}' />
+    <meta name='description' content='{$detail.description}' />
+</head>
+
+<body>
+    {include file="public/header" /}
+
+    <div class="contain">
+        <div class="left">
+            <h3>{$detail.title}</h3>
+            <div class="introduction">{$detail.description}</div>
+            <!-- <div class="content"></div> -->
+            <div class="content">{$detail.content}</div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                    {volist id='continiu' name='continiu'}
+                    <li>
+                        <a href="/article/{:lockcode($continiu.id)}.html">
+                            <img src="{$continiu.img}" alt="{$continiu.title}">
+                            <span>{$continiu.title}</span>
+                        </a>
+                    </li>
+                    {/volist}
+                    <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                    {volist id='recommoned' name='recommoned'}
+                    <li>{$i}. <a href="/article/{:lockcode($recommoned.id)}.html">{$recommoned.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                    {volist id='comment' name='comment'}
+                    <li>
+                        <img src="{$comment.headimg}" alt="{$comment.nickname}">
+                        <span>{$comment.content}</span>
+                        <span><i class="iconfont icon-ren"></i> {$comment.nickname}</span>
+                        <span><i class="iconfont icon-shijian"></i> {$comment.datetime}</span>
+                    </li>
+                    {/volist}
+                </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    {include file="public/footer" /}
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

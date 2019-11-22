@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>php大文件上传失败的原因及解决方法-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='解决办法,PHP文件上传,文件大小限制,上传时间限制,文件上传失败' />
+    <meta name='description' content='为什么上传大文件总是失败，上传小文件就没有问题。因为有很多配置项限制了文件上传的大小。关于PHP大文件上传失败的原因及解决方法如下：' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>php大文件上传失败的原因及解决方法</h3>
+            <div class="introduction">为什么上传大文件总是失败，上传小文件就没有问题。因为有很多配置项限制了文件上传的大小。关于PHP大文件上传失败的原因及解决方法如下：</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;"><img src="/ueditor/php/upload/image/20180915/1537015662137490.png" title="1537015662137490.png" alt="image.png"/></span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第1种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">文件上传时存放文件的临时目录必须是开启的并且是 PHP 进程所有者用户可写的目录。如果未指定则 PHP 使用系统默认值。php.ini文件中upload_tmp_dir用来说明PHP上传的文件放置的临时目录，要想上传文件，得保证服务器没有关闭临时文件并对该文件夹有写入的权限。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第2种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">max_execution_time 的值必须足够大。变量 max_execution_time 设置了在强制终止脚本前PHP等待脚本执行完毕的时间，此时间以秒计算。当脚本进入了一个无限循环状态时此变量非常有用。然而，当存在一个需要很长时间完成的合法活动时（例如上传大型文件），这项功能也会导致操作失败。在这样的情况下必须考虑将此变量值增大，以避免PHP在脚本正在执行某些重要过程的时候将脚本关闭，例如设置为 90 秒，max_execution_time = 90。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255);"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">注意：在php函数中还有个set_time_limit 函数，和以上这个设置的作用是相同的，这两者的区别就是 以上是在 php.ini 文件中设置的，而set_time_limit 是写在php文件中的。所以也可以通过在页面中用 set_time_limit 设置程序的最长执行时间，比如无限制即：set_time_limit(0);</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第3种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">file_uploads = On 默认值为on，意思是允许通过 HTTP 进行文件上传，此选项不能设置为OFF。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第4种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">upload_max_filesize = 2M 设定文件上传的大小的最大值，php.ini配置文件中的默认文件上传大小为2M，php初学者容易犯的一个错误是在编写文件上传功能时通过设置上传文件最大大小的表单区域，即允许上传文件的最大值，max_file_size（隐藏值域）的值来规定上传文件的大小，其实一般别人可以绕过这个值，所以安全起见，最好是在 php.ini 配置文件中配置 upload_max_filesize 选项，设定文件上传的大小。默认 upload_max_filesize = 2M，即文件上传的大小为2M，如果你想上传超过8M的文件，比如20M，你必须设定upload_max_filesize = 20M。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第5种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">post_max_size 这个值也必须足够大。这个变量也是一个同表单提交相关的变量，它限制的是客户端通过POST方法进行一次表单提交时PHP程序所能够接收的最大数据量。一般情况下，将此值的值设置的比 upload_max_filesize 略大即可，比如要上传20MB的文件，此值可以设置为 21MB。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第6种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">max_input_time 此变量可以以秒为单位对通过POST、GET以及PUT方式接收数据时间进行限制。如果应用程序所运行环境处在网络比较慢的情况下，则需要增加此值以增大接收数据所需要的时间，比如将此值设置为 90秒。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255);"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">max_input_time = 90</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第7种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">memory_limit 也必须足够大，为了避免正在运行的脚本大量使用系统可用内存，PHP允许定义内存使用限额。通过memory_limit变量来指定单个脚本程序可以使用的最大内存容量。变量memory_limit的值应当适当大于post_max_size的值。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><strong><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">第8种情况：</span></strong></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">另外如果你的主机是 nginx 操作系统的话，如果以上操作都不行的话，记得在nginx 的配置文件里面加上 client_max_body_size 20m; 这样一句，即表示最大允许上传20MB，具体根据自己的情况来。我的nginx 配置文件的位置在 /usr/local/nginx/conf/nginx.conf。</span></p><p style="margin-top: 0px; margin-bottom: 10px; padding: 0px; color: rgb(85, 85, 85); font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255);"><span style="margin: 0px; padding: 0px; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">希望本文可以为大家提供一些思路，更好的去解决类似问题。</span></p><p><br/></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>js(jquery)实现星级评价⭐-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='JS,jquery,星级评价,五星评价,商品评价' />
+    <meta name='description' content='技术服务于业务，还是客户的需求。就是实现星级评价，这里用到了icon图标还有jquery' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>js(jquery)实现星级评价⭐</h3>
+            <div class="introduction">技术服务于业务，还是客户的需求。就是实现星级评价，这里用到了icon图标还有jquery</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">老规矩还是先把资源分享出来</span></p><p><span style="text-decoration: underline; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"><a href="http://www.iconfont.cn/search/index?searchType=icon&q=%E6%98%9F%E6%98%9F" target="_blank" title="星星icon图标直通车" style="text-decoration: underline; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"><strong>1.</strong><strong>星星icon图标直通车 http://www.iconfont.cn</strong></a><a href="http://www.iconfont.cn/search/index?searchType=icon&q=%E6%98%9F%E6%98%9F" target="_blank" title="星星icon图标直通车"></a></span></p><p><img src="/ueditor/php/upload/image/20181008/1538998381465388.png" title="1538998381465388.png" alt="image.png" width="513" height="251"/></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"><strong>2.</strong><a href="http://www.jq22.com/jquery-info122" target="_blank" title="Jquery所有版本引用地址"><strong><span style="font-size: 16px; color: rgb(51, 51, 51); font-family: 微软雅黑;">官网jquery最新压缩版引用地址:</span></strong><strong><span style="font-size: 16px; color: rgb(51, 51, 51); font-family: 微软雅黑;"></span></strong><strong><code class="html plain" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(97, 97, 99) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">&lt;</code><code class="html keyword" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(39, 149, 238) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">script</code><span style="font-family: Verdana; font-size: 13px; white-space: pre; background-color: rgb(251, 252, 253);"> </span><code class="html color1" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(241, 140, 22) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">src</code><code class="html plain" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(97, 97, 99) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">=</code><code class="html string" style="font-family: Verdana; font-size: 13px; color: rgb(36, 157, 127); background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">&quot;</code><code class="html string" style="font-family: Verdana; font-size: 13px; color: rgb(36, 157, 127); background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">https://code.jquery.com/jquery-3.3.1.min.js&quot;</code></strong><strong><code class="html plain" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(97, 97, 99) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">&gt;&lt;/</code><code class="html keyword" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(39, 149, 238) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">script</code><code class="html plain" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(97, 97, 99) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;">&gt;</code></strong></a></span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"><strong><code class="html plain" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(97, 97, 99) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;"><img src="/ueditor/php/upload/image/20181008/1538998477926173.png" title="1538998477926173.png" alt="image.png" width="624" height="278"/></code></strong></span></p><p><br/></p><p>第一步就是引用星星icon图标啦，上面有地址，里面也有各种引入的教程。</p><p><img src="/ueditor/php/upload/image/20181008/1539004079126818.png" title="1539004079126818.png" alt="image.png"/></p><p>&nbsp; .light{color: #F1D300;}</p><p>我们通过一个class将星星点亮</p><p><br/></p><p>主要的js</p><pre class="brush:html;toolbar:false">&lt;ul&nbsp;class=&quot;star&quot;&gt;
+&lt;li&gt;&lt;i&nbsp;class=&quot;iconfont&nbsp;icon-icon-xingxing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&nbsp;class=&quot;iconfont&nbsp;icon-icon-xingxing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&nbsp;class=&quot;iconfont&nbsp;icon-icon-xingxing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&nbsp;class=&quot;iconfont&nbsp;icon-icon-xingxing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&nbsp;class=&quot;iconfont&nbsp;icon-icon-xingxing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+&lt;input&nbsp;type=&quot;hidden&quot;&nbsp;name=&quot;star&quot;&nbsp;value=&quot;0&quot;&gt;
+&lt;/ul&gt;</pre><pre class="brush:js;toolbar:false">$(&#39;.star&nbsp;li&#39;).click(function(){
+&nbsp;&nbsp;var&nbsp;index=$(this).index()+1;
+&nbsp;&nbsp;if&nbsp;($(&#39;.light&#39;).length==1&nbsp;&amp;&amp;&nbsp;index==1)&nbsp;{$(&#39;.light&#39;).removeClass(&#39;light&#39;);$(&#39;input[name=&quot;credit&quot;]&#39;).val(0);return&nbsp;false;};
+&nbsp;&nbsp;$(&#39;input[name=&quot;credit&quot;]&#39;).val(index);
+&nbsp;&nbsp;for&nbsp;(var&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;5;&nbsp;i++)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(i&lt;index)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(&#39;.star&nbsp;li:eq(&#39;+i+&#39;)&#39;).addClass(&#39;light&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(&#39;.star&nbsp;li:eq(&#39;+i+&#39;)&#39;).removeClass(&#39;light&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;};
+});</pre><p>大概说一下原理</p><p>比如我们点击第三个星星的时候，我们就获取第三个星星的索引</p><p>然后我们将小于等于这个索引的星星点亮 也就是添加class=&quot;light&quot; 大于这个索引的星星删除class=&quot;light&quot;</p><p><br/></p><p>如果支持0颗星的话就需要加上一个判断</p><pre class="brush:js;toolbar:false">if&nbsp;($(&#39;.light&#39;).length==1&nbsp;&amp;&amp;&nbsp;index==1)&nbsp;{$(&#39;.light&#39;).removeClass(&#39;light&#39;);$(&#39;input[name=&quot;credit&quot;]&#39;).val(0);return&nbsp;false;};
+&nbsp;&nbsp;$(&#39;input[name=&quot;credit&quot;]&#39;).val(index);</pre><p>也就是当1颗星的时候 点击第一颗星星 就会变成0星</p><p>我们可以通过统计点亮星星的dom数量来统计星级，并通过隐藏域在表单中传值</p><p><br/></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"><em><strong><code class="html plain" style="font-family: Verdana; font-size: 13px; background-color: rgb(251, 252, 253); white-space: pre; box-sizing: content-box !important; padding: 0px !important; color: rgb(97, 97, 99) !important; border-radius: 0px !important; background-image: initial !important; background-position: 0px 0px !important; background-size: initial !important; background-repeat: initial !important; background-attachment: initial !important; background-origin: initial !important; background-clip: initial !important; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.5em !important; margin: 0px !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: auto !important;"></code></strong></em></span></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>{$content.title}-{$page.name}-{$config.webname}</title>
+<meta name='keywords' content='{$content.keywords}' />
+<meta name='description' content='{$content.description}' />
+<link href='/favicon.ico' rel='icon' type='image/x-icon' />
+<link href='/favicon.ico' rel='shortcut icon' type='image/x-icon' />
+<link href="/static/index/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/static/index/css/css.css" rel="stylesheet" type="text/css" />
+<link href="/static/index/css/stylec.css" rel="stylesheet" type="text/css" />
+<script src="/static/index/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<link href="/static/index/css/idangerous.swiper2.7.6.css" rel="stylesheet" type="text/css" />   
+<link href="/static/index/css/width.css" rel="stylesheet" type="text/css" />
+<link href="{$config.icon}" rel="stylesheet" type="text/css" />
+<script src="/static/index/js/client.js" type="text/javascript"></script>
+<script>if (client.system.iphone || client.system.ipod || client.system.android || client.system.nokiaN || client.system.winMobile) {location.href = "/m";}
+</script><link href="/static/index/css/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="bodyer">
+{include file="public/header" /}
+
+<div class="common_bodyer">
+    <div class="common_imgBlock">
+        <div class="common_bgImg" style="background: url(/static/index/images/title_bg.jpg) no-repeat center;
+            background-size: cover; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(../images/About/title_bg.jpg,sizingMethod='scale');">
+        </div>
+    </div>
+<div class="common_content">
+<div class="common_block">
+                    
+<div class="about_nav fl">
+    <div class="nav_Block">
+        <div class="nav_title">
+            <h2>{$page.name}</h2>
+        </div>
+        <div class="nav_Blist">
+            <ul class="nav_Click">
+            {volist id='single' name='single'}
+                <li class="sub_liBlock"><a class="aBlock {eq name='key' value='$content.en_title'}current{/eq}" href="/{$key}.html">{$single}</a></li>
+            {/volist}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="about_content fr">
+<div class="c_ct">
+    <div class="ch">{$content.title}</div>
+    <div class="en">{$content.en_title}</div>
+    <div class="loc"><a href="/">首页</a> ><a href="/{$page.url}.html">{$page.name}</a> > <p>{$content.title}</p>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<div class="profile_Block">
+    <div class="profile_content">{$content.content}</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+
+{include file="public/footer" /}
+</div>
+</body>
+<script src="/static/index/js/apps.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    //最小高  滚动控制
+    var scrollTop = 0;
+    var bottomTop = $("body").height() - $(window).height();
+    var minHeight = function() {
+        var wHeight = $(window).height();
+        $(".common_bodyer").css("minHeight", wHeight - 340);
+    }
+    minHeight();
+    $(window).resize(function() {
+        bottomTop = $("body").height() - $(window).height();
+        minHeight();
+    })
+
+    $(window).scroll(function() {
+        scrollTop = $("html,body").offset().top;
+        if (scrollTop < -100) {
+            $(".header_content").addClass("cur");
+        } else {
+            $(".header_content").removeClass("cur");
+        }
+    })
+
+    //返回顶部
+    $(".topButton").on("click", function() {
+        $("html,body").stop().animate({ scrollTop: 0 });
+    })
+    
+    //浮动弹窗
+    $(".function_aBlock.a1").bind("mouseover",function(){
+        $(this).find(".in").stop(true,true).fadeIn();
+    })
+    $(".function_aBlock.a1").bind("mouseleave",function(){
+        $(this).find(".in").hide();
+    })
+    //点击查询
+    $(".btn").bind("click", function() {
+        var text = $(".st").val();
+        if (text != "") {
+            window.location.href = "../News/Default.aspx?text=" + escape(text);
+        }
+    })
+})
+
+$(function() {
+	var wHeight = $(window).height(); //获取屏幕高度适应
+    var wWidth  = $(window).width();	//获取屏幕宽度适应
+	var tr = $(".intro_tr").width();
+    var tl = $(".about_content").width() -50;
+    var windowSize = function(){
+    	$(".intro_tl").width(tl - tr);
+    }
+    windowSize();
+    $(window).resize(function(){
+	    windowSize();
+    })
+    
+})
+</script>
+
+</html>

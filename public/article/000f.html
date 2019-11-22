@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>PHP数组搜索in_array，array_search，array_key_exists-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='in_array,array_search,array_key_exists,数组搜索,PHP技巧,数组操作,查找数组' />
+    <meta name='description' content='这篇文章主要介绍了php数组查找函数in_array()、array_search()、array_key_exists()使用实例,需要的朋友可以参考下' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>PHP数组搜索in_array，array_search，array_key_exists</h3>
+            <div class="introduction">这篇文章主要介绍了php数组查找函数in_array()、array_search()、array_key_exists()使用实例,需要的朋友可以参考下</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"><img src="/ueditor/php/upload/image/20181106/1541505807245022.jpg" width="482" height="287"/></span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;"><span style="font-size: 16px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">php在数组中查找指定值是否存在的方法有很多，</span>在不了解的情况下我们通常会用foreach循环的方式来查找，但是这样的方法效率太差了，今天简单介绍三种PHP内置数组相关的搜索函数。</span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">分</span><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">别是<span style="font-family: 楷体, 楷体_GB2312, SimKai; background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">函数in_array()、array_search()、array_key_exists()。</span></span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai; background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);"><br/></span></p><p><strong><span style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51); font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">1.in_array(search,array,type)</span></strong><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai; background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);"><br/></span></p><p><span style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51); font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">in_array() 函数搜索数组中是否存在指定的值。</span></p><p><span style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51); font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">如果给定的值&nbsp;search&nbsp;存在于数组&nbsp;array&nbsp;中则返回 true。如果第三个参数设置为 true，函数只有在元素存在于数组中且数据类型与给定值相同时才返回 true。</span></p><pre class="brush:php;toolbar:false">&lt;?php
+$people&nbsp;=&nbsp;array(&quot;Bill&quot;,&nbsp;&quot;Steve&quot;,&nbsp;&quot;Mark&quot;,&nbsp;&quot;David&quot;);
+if&nbsp;(in_array(&quot;Mark&quot;,&nbsp;$people))
+&nbsp;&nbsp;{
+&nbsp;&nbsp;echo&nbsp;&quot;匹配已找到&quot;;
+&nbsp;&nbsp;}
+else
+&nbsp;&nbsp;{
+&nbsp;&nbsp;echo&nbsp;&quot;匹配未找到&quot;;
+&nbsp;&nbsp;}
+?&gt;</pre><p><span style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51); font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"></span><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;"><span style="font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);"><strong><br/></strong></span><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;"><strong>2.array_search(value,array,strict)</strong></span><br/></span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">array_search() 函数在数组中搜索某个键值，并返回对应的键名。</span></p><pre class="brush:php;toolbar:false">&lt;?php
+$a=array(&quot;a&quot;=&gt;&quot;red&quot;,&quot;b&quot;=&gt;&quot;green&quot;,&quot;c&quot;=&gt;&quot;blue&quot;);
+echo&nbsp;array_search(&quot;red&quot;,$a);
+?&gt;</pre><p><br/></p><p><strong><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 18px;">3.array_key_exists(key,array)</span></strong><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;"><br/></span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">array_key_exists() 函数检查某个数组中是否存在指定的键名，如果键名存在则返回 true，如果键名不存在则返回 false。</span></p><pre class="brush:php;toolbar:false">&lt;?php
+$a=array(&quot;Volvo&quot;=&gt;&quot;XC90&quot;,&quot;BMW&quot;=&gt;&quot;X5&quot;);
+if&nbsp;(key_exists(&quot;Toyota&quot;,$a))
+&nbsp;&nbsp;{
+&nbsp;&nbsp;echo&nbsp;&quot;键存在！&quot;;
+&nbsp;&nbsp;}
+else
+&nbsp;&nbsp;{
+&nbsp;&nbsp;echo&nbsp;&quot;键不存在！&quot;;
+&nbsp;&nbsp;}
+?&gt;</pre><p></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">经过实际性能对比，在数据量不大的时候，比如小于1000，查找用哪一种都行，都不会成为性能上的瓶颈。但当数据量比较大的时候，用 array_key_exists 比较合适。据测试 array_key_exist 要比 in_array 效率高十几甚至几十倍。</span><br/></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai; background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);"><br/></span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;"></span><br/></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

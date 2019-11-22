@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>HTTP状态码列表-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='404,http状态码,编程知识,PHP基础' />
+    <meta name='description' content='这里是一些关于HTTP状态码的基础知识' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>HTTP状态码列表</h3>
+            <div class="introduction">这里是一些关于HTTP状态码的基础知识</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p>HTTP<span style="font-family:宋体">状态码列表</span> </p><p><span style="font-family:宋体">状态码</span> <span style="font-family:宋体">状态码英文名称</span> <span style="font-family:宋体">中文描述</span> </p><p>100 Continue <span style="font-family: 宋体">继续。客户端应继续其请求</span> </p><p>101 Switching Protocols <span style="font-family:宋体">切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到</span>HTTP<span style="font-family:宋体">的新版本协议</span> </p><p>&nbsp;</p><p>200 OK <span style="font-family: 宋体">请求成功。一般用于</span>GET<span style="font-family:宋体">与</span>POST<span style="font-family:宋体">请求</span> </p><p>201 Created <span style="font-family: 宋体">已创建。成功请求并创建了新的资源</span> </p><p>202 Accepted <span style="font-family: 宋体">已接受。已经接受请求，但未处理完成</span> </p><p>203 Non-Authoritative Information <span style="font-family:宋体">非授权信息。请求成功。但返回的</span>meta<span style="font-family:宋体">信息不在原始的服务器，而是一个副本</span> </p><p>204 No Content <span style="font-family:宋体">无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</span> </p><p>205 Reset Content <span style="font-family:宋体">重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</span> </p><p>206 Partial Content <span style="font-family:宋体">部分内容。服务器成功处理了部分</span>GET<span style="font-family:宋体">请求</span> </p><p>&nbsp;</p><p>300 Multiple Choices <span style="font-family:宋体">多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</span> </p><p>301 Moved Permanently <span style="font-family:宋体">永久移动。请求的资源已被永久的移动到新</span>URI<span style="font-family:宋体">，返回信息会包括新的</span>URI<span style="font-family:宋体">，浏览器会自动定向到新</span>URI<span style="font-family:宋体">。今后任何新的请求都应使用新的</span>URI<span style="font-family:宋体">代替</span> </p><p>302 Found <span style="font-family: 宋体">临时移动。与</span>301<span style="font-family:宋体">类似。但资源只是临时被移动。客户端应继续使用原有</span>URI</p><p>303 See Other <span style="font-family:宋体">查看其它地址。与</span>301<span style="font-family: 宋体">类似。使用</span>GET<span style="font-family:宋体">和</span>POST<span style="font-family:宋体">请求查看</span> </p><p>304 Not Modified <span style="font-family:宋体">未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</span> </p><p>305 Use Proxy <span style="font-family:宋体">使用代理。所请求的资源必须通过代理访问</span> </p><p>306 Unused <span style="font-family: 宋体">已经被废弃的</span>HTTP<span style="font-family:宋体">状态码</span> </p><p>307 Temporary Redirect <span style="font-family:宋体">临时重定向。与</span>302<span style="font-family: 宋体">类似。使用</span>GET<span style="font-family:宋体">请求重定向</span> </p><p>&nbsp;</p><p>400 Bad Request <span style="font-family:宋体">客户端请求的语法错误，服务器无法理解</span> </p><p>401 Unauthorized <span style="font-family:宋体">请求要求用户的身份认证</span> </p><p>402 Payment Required <span style="font-family:宋体">保留，将来使用</span> </p><p>403 Forbidden <span style="font-family:宋体">服务器理解请求客户端的请求，但是拒绝执行此请求</span> </p><p>404 Not Found <span style="font-family:宋体">服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置</span>&quot;<span style="font-family:宋体">您所请求的资源无法找到</span>&quot;<span style="font-family:宋体">的个性页面</span> </p><p>405 Method Not Allowed <span style="font-family:宋体">客户端请求中的方法被禁止</span> </p><p>406 Not Acceptable <span style="font-family:宋体">服务器无法根据客户端请求的内容特性完成请求</span> </p><p>407 Proxy Authentication Required <span style="font-family:宋体">请求要求代理的身份认证，与</span>401<span style="font-family:宋体">类似，但请求者应当使用代理进行授权</span> </p><p>408 Request Time-out <span style="font-family:宋体">服务器等待客户端发送的请求时间过长，超时</span> </p><p>409 Conflict <span style="font-family: 宋体">服务器完成客户端的</span>PUT<span style="font-family:宋体">请求是可能返回此代码，服务器处理请求时发生了冲突</span> </p><p>410 Gone <span style="font-family: 宋体">客户端请求的资源已经不存在。</span>410<span style="font-family:宋体">不同于</span>404<span style="font-family:宋体">，如果资源以前有现在被永久删除了可使用</span>410<span style="font-family:宋体">代码，网站设计人员可通过</span>301<span style="font-family:宋体">代码指定资源的新位置</span> </p><p>411 Length Required <span style="font-family:宋体">服务器无法处理客户端发送的不带</span>Content-Length<span style="font-family:宋体">的请求信息</span> </p><p>412 Precondition Failed <span style="font-family:宋体">客户端请求信息的先决条件错误</span> </p><p>413 Request Entity Too Large <span style="font-family:宋体">由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个</span>Retry-After<span style="font-family:宋体">的响应信息</span> </p><p>414 Request-URI Too Large <span style="font-family:宋体">请求的</span>URI<span style="font-family: 宋体">过长（</span>URI<span style="font-family:宋体">通常为网址），服务器无法处理</span> </p><p>415 Unsupported Media Type <span style="font-family:宋体">服务器无法处理请求附带的媒体格式</span> </p><p>416 Requested range not satisfiable <span style="font-family:宋体">客户端请求的范围无效</span> </p><p>417 Expectation Failed <span style="font-family:宋体">服务器无法满足</span>Expect<span style="font-family:宋体">的请求头信息</span> </p><p>&nbsp;</p><p>500 Internal Server Error <span style="font-family:宋体">服务器内部错误，无法完成请求</span> </p><p>501 Not Implemented <span style="font-family:宋体">服务器不支持请求的功能，无法完成请求</span> </p><p>502 Bad Gateway <span style="font-family:宋体">充当网关或代理的服务器，从远端服务器接收到了一个无效的请求</span> </p><p>503 Service Unavailable <span style="font-family:宋体">由于超载或系统维护，服务器暂时的无法处理</span></p><p><br/></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

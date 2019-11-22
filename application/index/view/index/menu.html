@@ -1,0 +1,31 @@
+<div id="sidebar" class="sidebar h-sidebar navbar-collapse collapse ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
+<ul class="nav nav-list" style="top: 0px;">
+	<li class="hover {empty name='current'}active open{/empty}">
+		<a href="/index">
+		<i class="menu-icon fa fa-home"></i>
+			<span class="menu-text">后台首页</span>
+		</a>
+		<b class="arrow"></b>
+	</li>
+
+	{volist name='menu' id='menu'}
+	<li class="hover {eq name='current' value='$menu.id'}active open{/eq}">
+		<a href="{:url($menu['url'].'/index')}" class="dropdown-toggle">
+			<i class="menu-icon fa {$menu.icon}"></i>
+			<span class="menu-text">{$menu.name}</span>
+			<b class="arrow fa fa-angle-down"></b>
+		</a>
+		<b class="arrow"></b>
+		<ul class="submenu can-scroll ace-scroll scroll-disabled">
+			{volist name='menu.son' id='son'}
+				<li class="hover">
+					<a href="{:url($son['url'])}"><i class="menu-icon fa fa-caret-right"></i>{$son.name}</a>
+					<b class="arrow"></b>
+				</li>
+			{/volist}
+		</ul>
+		<div class="scroll-track scroll-detached no-track scroll-thin scroll-margin scroll-visible" style="display: none; top: 69px; left: 183px;"><div class="scroll-bar" style="top: 0px;"></div></div>
+	</li>
+	{/volist}
+	</ul>
+</div>

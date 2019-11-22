@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>PHP价格数字转为中文大写汉字-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='数据转换,价格数字,中文大写,PHP转换,繁体中文' />
+    <meta name='description' content='客户需要系统生成一个进货表的word文件，其中需要统计所有商品的总价，并且要有大写的价格。oh!，苦恼。其实逻辑不是很复杂，但是写起来赶脚真的挺麻烦的，因为有百万千万等数字级别，' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>PHP价格数字转为中文大写汉字</h3>
+            <div class="introduction">客户需要系统生成一个进货表的word文件，其中需要统计所有商品的总价，并且要有大写的价格。oh!，苦恼。其实逻辑不是很复杂，但是写起来赶脚真的挺麻烦的，因为有百万千万等数字级别，</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">将价格数字转为中文大写</span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">介绍了几种php将金额数字转化为中文大写的实用函数，各有优劣，小伙伴们根据自己的项目需求自由选择吧。</span></p><p><span style="text-indent: 2em; font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">方法1：</span></p><pre class="brush:php;toolbar:false"><span style="font-size: 16px;">header(&#39;content-type:text/html;charset=utf8&#39;);<br/>echo&nbsp;toChineseNumber(1234988867890.222);//壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾圆<br/>function&nbsp;toChineseNumber($money){<br/>&nbsp;&nbsp;$money&nbsp;=&nbsp;round($money,2);<br/>&nbsp;&nbsp;$cnynums&nbsp;=&nbsp;array(&quot;零&quot;,&quot;壹&quot;,&quot;贰&quot;,&quot;叁&quot;,&quot;肆&quot;,&quot;伍&quot;,&quot;陆&quot;,&quot;柒&quot;,&quot;捌&quot;,&quot;玖&quot;);&nbsp;<br/>&nbsp;&nbsp;$cnyunits&nbsp;=&nbsp;array(&quot;圆&quot;,&quot;角&quot;,&quot;分&quot;);<br/>&nbsp;&nbsp;$cnygrees&nbsp;=&nbsp;array(&quot;拾&quot;,&quot;佰&quot;,&quot;仟&quot;,&quot;万&quot;,&quot;拾&quot;,&quot;佰&quot;,&quot;仟&quot;,&quot;亿&quot;);&nbsp;<br/>&nbsp;&nbsp;@list($int,$dec)&nbsp;=&nbsp;explode(&quot;.&quot;,$money,2);<br/>&nbsp;&nbsp;@$dec&nbsp;=&nbsp;array_filter(array($dec[1],$dec[0]));&nbsp;<br/>&nbsp;&nbsp;$ret&nbsp;=&nbsp;array_merge($dec,array(implode(&quot;&quot;,cnyMapUnit(str_split($int),$cnygrees)),&quot;&quot;));&nbsp;<br/>&nbsp;&nbsp;$ret&nbsp;=&nbsp;implode(&quot;&quot;,array_reverse(cnyMapUnit($ret,$cnyunits)));&nbsp;<br/>&nbsp;&nbsp;return&nbsp;str_replace(array_keys($cnynums),$cnynums,$ret);&nbsp;<br/>}<br/>function&nbsp;cnyMapUnit($list,$units)&nbsp;{&nbsp;<br/>$ul=count($units);&nbsp;<br/>$xs=array();&nbsp;<br/>foreach&nbsp;(array_reverse($list)&nbsp;as&nbsp;$x)&nbsp;{&nbsp;<br/>$l=count($xs);&nbsp;<br/>if&nbsp;($x!=&quot;0&quot;&nbsp;||&nbsp;!($l%4))&nbsp;<br/>@$n=($x==&#39;0&#39;?&#39;&#39;:$x).($units[($l-1)%$ul]);&nbsp;<br/>else&nbsp;@$n=is_numeric($xs[0][0])?$x:&#39;&#39;;&nbsp;<br/>array_unshift($xs,$n);&nbsp;<br/>}&nbsp;<br/>return&nbsp;$xs;&nbsp;<br/>}<br/></span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">方法2：</span></p><pre class="brush:php;toolbar:false"><span style="font-size: 16px;">function&nbsp;num_to_rmb($num){<br/>&nbsp;&nbsp;&nbsp;&nbsp;$c1&nbsp;=&nbsp;&quot;零壹贰叁肆伍陆柒捌玖&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;$c2&nbsp;=&nbsp;&quot;分角元拾佰仟万拾佰仟亿&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;//精确到分后面就不要了，所以只留两个小数位<br/>&nbsp;&nbsp;&nbsp;&nbsp;$num&nbsp;=&nbsp;round($num,&nbsp;2);&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;//将数字转化为整数<br/>&nbsp;&nbsp;&nbsp;&nbsp;$num&nbsp;=&nbsp;$num&nbsp;*&nbsp;100;<br/>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(strlen($num)&nbsp;&gt;&nbsp;10)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&quot;金额太大，请检查&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;$i&nbsp;=&nbsp;0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;$c&nbsp;=&nbsp;&quot;&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(1)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($i&nbsp;==&nbsp;0)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//获取最后一位数字<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$n&nbsp;=&nbsp;substr($num,&nbsp;strlen($num)-1,&nbsp;1);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$n&nbsp;=&nbsp;$num&nbsp;%&nbsp;10;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//每次将最后一位数字转化为中文<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$p1&nbsp;=&nbsp;substr($c1,&nbsp;3&nbsp;*&nbsp;$n,&nbsp;3);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$p2&nbsp;=&nbsp;substr($c2,&nbsp;3&nbsp;*&nbsp;$i,&nbsp;3);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($n&nbsp;!=&nbsp;&#39;0&#39;&nbsp;||&nbsp;($n&nbsp;==&nbsp;&#39;0&#39;&nbsp;&amp;&amp;&nbsp;($p2&nbsp;==&nbsp;&#39;亿&#39;&nbsp;||&nbsp;$p2&nbsp;==&nbsp;&#39;万&#39;&nbsp;||&nbsp;$p2&nbsp;==&nbsp;&#39;元&#39;)))&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$c&nbsp;=&nbsp;$p1&nbsp;.&nbsp;$p2&nbsp;.&nbsp;$c;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$c&nbsp;=&nbsp;$p1&nbsp;.&nbsp;$c;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$i&nbsp;=&nbsp;$i&nbsp;+&nbsp;1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//去掉数字最后一位了<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$num&nbsp;=&nbsp;$num&nbsp;/&nbsp;10;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$num&nbsp;=&nbsp;(int)$num;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//结束循环<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($num&nbsp;==&nbsp;0)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;$j&nbsp;=&nbsp;0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;$slen&nbsp;=&nbsp;strlen($c);<br/>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;($j&nbsp;&lt;&nbsp;$slen)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//utf8一个汉字相当3个字符<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$m&nbsp;=&nbsp;substr($c,&nbsp;$j,&nbsp;6);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//处理数字中很多0的情况,每次循环去掉一个汉字“零”<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($m&nbsp;==&nbsp;&#39;零元&#39;&nbsp;||&nbsp;$m&nbsp;==&nbsp;&#39;零万&#39;&nbsp;||&nbsp;$m&nbsp;==&nbsp;&#39;零亿&#39;&nbsp;||&nbsp;$m&nbsp;==&nbsp;&#39;零零&#39;)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$left&nbsp;=&nbsp;substr($c,&nbsp;0,&nbsp;$j);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$right&nbsp;=&nbsp;substr($c,&nbsp;$j&nbsp;+&nbsp;3);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$c&nbsp;=&nbsp;$left&nbsp;.&nbsp;$right;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$j&nbsp;=&nbsp;$j-3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$slen&nbsp;=&nbsp;$slen-3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$j&nbsp;=&nbsp;$j&nbsp;+&nbsp;3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;//这个是为了去掉类似23.0中最后一个“零”字<br/>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(substr($c,&nbsp;strlen($c)-3,&nbsp;3)&nbsp;==&nbsp;&#39;零&#39;)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$c&nbsp;=&nbsp;substr($c,&nbsp;0,&nbsp;strlen($c)-3);<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;//将处理的汉字加上“整”<br/>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(empty($c))&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&quot;零元整&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;}else{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$c&nbsp;.&nbsp;&quot;整&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>}<br/>echo&nbsp;num_to_rmb(89542365.22);<br/></span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">方法三（不支持小数）：<br/></span></p><pre class="brush:php;toolbar:false"><span style="font-size: 16px;">function&nbsp;convert_2_cn($num)&nbsp;{<br/>$convert_cn&nbsp;=&nbsp;array(&quot;零&quot;,&quot;壹&quot;,&quot;贰&quot;,&quot;叁&quot;,&quot;肆&quot;,&quot;伍&quot;,&quot;陆&quot;,&quot;柒&quot;,&quot;捌&quot;,&quot;玖&quot;);<br/>$repair_number&nbsp;=&nbsp;array(&#39;零仟零佰零拾零&#39;,&#39;万万&#39;,&#39;零仟&#39;,&#39;零佰&#39;,&#39;零拾&#39;);<br/>$unit_cn&nbsp;=&nbsp;array(&quot;拾&quot;,&quot;佰&quot;,&quot;仟&quot;,&quot;万&quot;,&quot;亿&quot;);<br/>$exp_cn&nbsp;=&nbsp;array(&quot;&quot;,&quot;万&quot;,&quot;亿&quot;);<br/>$max_len&nbsp;=&nbsp;12;<br/>$len&nbsp;=&nbsp;strlen($num);<br/>if($len&nbsp;&gt;&nbsp;$max_len)&nbsp;{<br/>return&nbsp;&#39;outnumber&#39;;<br/>}<br/>$num&nbsp;=&nbsp;str_pad($num,12,&#39;-&#39;,STR_PAD_LEFT);<br/>$exp_num&nbsp;=&nbsp;array();<br/>$k&nbsp;=&nbsp;0;<br/>for($i=12;$i&gt;0;$i--){<br/>if($i%4&nbsp;==&nbsp;0)&nbsp;{<br/>$k++;<br/>}<br/>$exp_num[$k][]&nbsp;=&nbsp;substr($num,$i-1,1);<br/>}<br/>$str&nbsp;=&nbsp;&#39;&#39;;<br/>foreach($exp_num&nbsp;as&nbsp;$key=&gt;$nums)&nbsp;{<br/>if(array_sum($nums)){<br/>$str&nbsp;=&nbsp;array_shift($exp_cn)&nbsp;.&nbsp;$str;<br/>}<br/>foreach($nums&nbsp;as&nbsp;$nk=&gt;$nv)&nbsp;{<br/>if($nv&nbsp;==&nbsp;&#39;-&#39;){continue;}<br/>if($nk&nbsp;==&nbsp;0)&nbsp;{<br/>$str&nbsp;=&nbsp;$convert_cn[$nv]&nbsp;.&nbsp;$str;<br/>}&nbsp;else&nbsp;{<br/>$str&nbsp;=&nbsp;$convert_cn[$nv].$unit_cn[$nk-1]&nbsp;.&nbsp;$str;<br/>}<br/>}<br/>}<br/>$str&nbsp;=&nbsp;str_replace($repair_number,array(&#39;万&#39;,&#39;亿&#39;,&#39;-&#39;),$str);<br/>$str&nbsp;=&nbsp;preg_replace(&quot;/-{2,}/&quot;,&quot;&quot;,$str);<br/>$str&nbsp;=&nbsp;str_replace(array(&#39;零&#39;,&#39;-&#39;),array(&#39;&#39;,&#39;零&#39;),$str);<br/>return&nbsp;$str;<br/>}<br/>echo&nbsp;convert_2_cn(12234567);<br/></span></pre><p><br/></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

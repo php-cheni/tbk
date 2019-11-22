@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录-进入幽美集团后台管理</title>
+    <link rel="icon" type="image/png" href="/favicon.ico"/>
+    <link rel="stylesheet" href="/static/assets/css/login.css"/>
+<style>
+img{
+cursor: pointer;
+}
+body {
+    margin: 50px 0;
+    text-align: center;
+}
+.inp {
+    border: 1px solid gray;
+    padding: 0 10px;
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+}
+.btn {
+    border: 1px solid gray;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+#embed-captcha {
+    width: 100%!important;
+    margin: 0 auto;
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+#notice {
+    color: red;
+}
+.geetest_holder{
+    width: 100%!important;
+}
+.geetest_success_logo,.geetest_feedback,.geetest_copyright{
+    display: none;
+}
+</style>
+</head>
+<body class="page-login-v3">
+<div class="container">
+    <div id="wrapper" class="login-body">
+        <div class="login-content">
+            <div class="brand">
+                <img alt="logo" class="brand-img" src="/static/assets/images/youmei.jpg">
+                <h2 class="brand-text">进入幽美集团后台管理</h2>
+            </div>
+            <form id="login-form" class="form-horizontal login-form">
+                <div class="form-group">
+                    <input name="username" lay-verify="required" placeholder="请输入用户名" type="text">
+                </div>
+                <div class="form-group">
+                    <input name="password" lay-verify="required" placeholder="请输入密码" type="password">
+                </div>
+                <div class="form-group">
+                    <div id="embed-captcha"></div>
+                    <p id="wait" class="show">正在加载验证码......</p>
+                    <p id="notice" class="hide">请先完成验证</p>
+                </div>
+
+                <div class="form-group">
+                    <button id="btn-submit" lay-submit lay-filter="login" type="button">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/static/assets/js/jquery-1.7.1.min.js"></script>
+<script src="/static/assets/js/gt.js"></script>
+<script src="/static/layui/layui.all.js"></script>
+<script>
+$(document).keydown(function(event){ 
+    if(event.keyCode==13){ $("#btn-submit").click(); } 
+});
+
+var handlerEmbed = function (captchaObj) {
+$("#btn-submit").click(function (e) {
+        var validate = captchaObj.getValidate();
+        if (!validate) {
+            layer.msg('请先完成验证！', {icon: 5,time: 1000});
+            e.preventDefault();
+        }else{
+            var form = layui.form;
+            form.on('submit(login)', function(data){
+
+                var load=layer.msg('正在登录...', {icon:16,shade:[0.1, '#fff'],time:false });
+                $.ajax({
+                    url: "/login/index.html",
+                    type: "POST",
+                    dataType:"json",
+                    data:$("form").serialize(),
+                    success: function(data){
+                        layer.close(load);
+                        if (data.success) {
+                            // layer.msg(data.success, {icon: 1,time: 1000},function(){location='/index';});
+                            layer.msg(data.success, {icon: 1,time: 1000},function(){location='/index';});
+                        }else{
+                            layer.msg(data.error, {icon: 5,time: 1000});
+                        }   
+                    }
+                });
+            });
+        }
+    });
+    // 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
+    captchaObj.appendTo("#embed-captcha");
+    captchaObj.onReady(function () {$("#wait")[0].className = "hide";});
+};
+
+$.ajax({
+    // 获取id，challenge，success（是否启用failback）
+    url: "/login/StartCaptchaServlet?t=" + (new Date()).getTime(), // 加随机数防止缓存
+    type: "get",
+    dataType: "json",
+    success: function (data) {
+        console.log(data);
+        // 使用initGeetest接口
+        // 参数1：配置参数
+        // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+        initGeetest({
+            gt: data.gt,
+            challenge: data.challenge,
+            new_captcha: data.new_captcha,
+            product: "float ", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+            offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+            // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+        }, handlerEmbed);
+    }
+});
+
+
+</script>
+</html>

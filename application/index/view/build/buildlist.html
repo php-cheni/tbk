@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="{$config.icon}">
+    <title>{$tdk.title}-{$config.webname}</title>
+    <meta name='keywords' content='{$tdk.keywords}' />
+    <meta name='description' content='{$tdk.description}' />
+</head>
+
+<body>
+    {include file="public/header" /}
+
+    <div class="contain">
+        <div class="left">
+            <div class="php54-page">
+                <ul></ul>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="javascript:;">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%" >
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                    {volist id='recommoned' name='recommoned'}
+                    <li>{$i}. <a href="/article/{:lockcode($recommoned.id)}.html">{$recommoned.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                    {volist id='comment' name='comment'}
+                    <li>
+                        <img src="{$comment.headimg}" alt="{$comment.nickname}">
+                        <span>{$comment.content}</span>
+                        <span><i class="iconfont icon-ren"></i> {$comment.nickname}</span>
+                        <span><i class="iconfont icon-shijian"></i> {$comment.datetime}</span>
+                    </li>
+                    {/volist}
+                </ul>
+                <p style="clear:both"></p>
+            </div>
+
+        </div>
+
+        <p style="clear:both"></p>
+    </div>
+
+    {include file="public/footer" /}
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+<script src="/static/layui/layui.all.js"></script>
+<script>
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return decodeURI(r[2]);
+        return null;
+    }
+
+    let p = GetQueryString('p') ? GetQueryString('p') : 1;
+    var load = layer.msg('正在加载...', { icon: 16, shade: [0.1, '#fff'], time: false });
+    $.ajax({
+        url: "{:url('Article/article')}?p=" + p,
+        dataType: "json",
+        success: function (data) {
+            layer.close(load);
+            if ($('.left a')) {
+                $.each(data.data, function (k, v) {
+                    $('.php54-page').before('<a href="/article/'+v.code+'.html"><div class="article"><h3>'+v.title+'</h3><div class="general_image_pic"><img src="'+v.img+'" alt="'+v.title+'"><div class="description">'+v.description+'</div></div></div></a>');
+                });
+            }else{
+                $.each(data.data, function (k, v) {
+                    $('.left').prepend('<a href="/article/'+v.code+'.html"><div class="article"><h3>'+v.title+'</h3><div class="general_image_pic"><img src="'+v.img+'" alt="'+v.title+'"><div class="description">'+v.description+'</div></div></div></a>');
+                });
+            }
+
+            $('.php54-page ul').html(data.page);
+        }
+    });
+</script>
+</html>

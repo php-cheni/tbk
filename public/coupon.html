@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>领券购物</title>
+    <meta name='keywords' content='领券购物' />
+    <meta name='description' content='领券购物' />
+    <style>
+        .contain{
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="goods-search">
+            <form action="" method="get">
+                <input type="text" name="q" placeholder="查找商品，领劵购买"><button type="submit"><i
+                        class="iconfont icon-sousuo"></i></button></form>
+        </div>
+        <div class="goods"><ul></ul></div>
+        <div class="php54-page">
+            <ul></ul>
+        </div>
+
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+    <a href=""></a>
+
+</body>
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/clipboard.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+<script src="/static/layui/layui.all.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.copybtn');
+
+    clipboard.on('success', function(e) {
+        alert('复制成功，请打开淘宝');
+    });
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return decodeURI(r[2]);
+        return null;
+    }
+
+    let q = GetQueryString('q') ? GetQueryString('q') : '';
+    let p = GetQueryString('p') ? GetQueryString('p') : 1;
+    $('input:first').val(q);
+    var load = layer.msg('正在查询...', { icon: 16, shade: [0.1, '#fff'], time: false });
+    $.ajax({
+        url: "/coupon/search.html?q=" + q + "&p=" + p,
+        dataType: "json",
+        success: function (data) {
+            layer.close(load);
+            if (data.success) {
+                // layer.msg(data.success, { icon: 1, time: 1000 });
+                $.each(data.data, function (index, val) {
+                    $('.goods ul').append('<li><div><a href="' + val.coupon_share_url + '"><img src="' + val.pict_url + '" width="100%"></a><p><a href="' + val.coupon_share_url + '">' + val.title + '</a></p><b>￥' + val.zk_final_price + '</b>&nbsp;<b>￥' + val.price + '</b><span><i class="iconfont icon-youhuiquan"></i>￥' + val.coupon_amount + '</span><p></p><span>月销：' + val.volume + '</span><span>' + val.shop_title + '</span><button class="copybtn" onclick="copytpwd(\'' + val.coupon_share_url + '\', this)";>生 成 淘 口 令</button></div></li>');
+                });
+                $('.php54-page ul').html(data.page);
+            } else {
+                layer.msg(data.msg, { icon: 5, time: 1000 });
+            }
+        }
+    });
+
+    function copytpwd(url, obj) {
+        $(obj).css('background-color', '#65b908');
+        if (/Android|webOS|iPhone|iPod|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE|BlackBerry/i.test(navigator.userAgent)) {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                // 复制淘口令
+                if (!$(obj).attr('data-clipboard-text')) {
+                    $.ajax({
+                        url: "/coupon/createtpwd.html?tpwd=https:" + url,
+                        dataType: "json",
+                        success: function (data) {
+                            $('.copybtn').attr('data-clipboard-text', data);
+                            $(obj).text('点击复制：' + data);
+                        }
+                    });
+                }
+            } else {
+                // 直接跳转淘宝
+                $('a:last').attr('href', 'taobao:' + url);
+                document.getElementsByTagName('a')[$('a').length - 1].click();
+                $(obj).text('正在跳转至淘宝');
+            }
+        } else {
+            $('a:last').attr('href', url);
+            document.getElementsByTagName('a')[$('a').length - 1].click();
+            $(obj).text('正在跳转至淘宝');
+        }
+    }
+
+ 
+    function copy(invite_code) {
+        var text = document.createElement("input");
+        text.id = 'webcopyinput';
+        text.value = invite_code;
+        text.style.position = 'fixed';
+        text.style.top = '-10000px';
+        document.body.appendChild(text);
+        var copied = false;
+        console.log("Copy Init");
+        var copyEvent = function () {
+            if (!copied) {
+                text.focus();//给input输入框聚焦
+                text.setSelectionRange(0, text.value.length);//设置input框选中的范围
+                copied = document.execCommand('Copy');//执行复制操作
+                text.blur();
+                alert(copied);
+                copied=false;
+            }
+        }
+        var btn=document.querySelector('#copy');
+        btn.addEventListener('click', copyEvent, true);
+    }
+
+</script>
+
+</html>

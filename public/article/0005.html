@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>通过文件上传插件WebUploader实现文件上传-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='PHP教程,文件上传,WebUploader,文件上传插件' />
+    <meta name='description' content='今天讲一下通过前端文件上传插件实现上传文件,大文件也比较适用，带分片上传功能。或者想实现ajax上传文件的朋友也可以用这个，总体比较简单。' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>通过文件上传插件WebUploader实现文件上传</h3>
+            <div class="introduction">今天讲一下通过前端文件上传插件实现上传文件,大文件也比较适用，带分片上传功能。或者想实现ajax上传文件的朋友也可以用这个，总体比较简单。</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">首先就是晒出官网地址 http://fex.baidu.com/webuploader/ </span></p><p><img src="/ueditor/php/upload/image/20180917/1537178276454802.png" title="1537178276454802.png" alt="image.png" width="725" height="337"/></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">图片上基本上就是这款插件的优势了，下面来简单说下怎么使用webuploader上传文件。</span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">首先就是去官网下载最新的插件包啦。</span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">下载直达通道：https://github.com/fex-team/webuploader/releases/download/0.1.5/webuploader-0.1.5.zip </span></p><p><img src="/ueditor/php/upload/image/20180917/1537178511178151.png" title="1537178511178151.png" alt="image.png" width="657" height="306"/></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">解压后是一堆文件其实用不上这么多，一个JS 和 css就可以了</span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">第一步引入JS文件 <span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai; color: rgb(192, 0, 0);">webuploader.js</span></span></p><p></p><pre class="brush:php;toolbar:false"><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">//文件上传<br/>var uploader = WebUploader.create({<br/>&nbsp; &nbsp; // swf文件路径<br/>&nbsp; &nbsp; swf: &#39;/Public/Common/webUploader/Uploader.swf&#39;,<br/>&nbsp; &nbsp; // 文件接收服务端。<br/>&nbsp; &nbsp; server: &quot;/uploadImg&quot;,<br/>&nbsp; &nbsp; // 选择文件的按钮。可选。<br/>&nbsp; &nbsp; // 内部根据当前运行是创建，可能是input元素，也可能是flash.<br/>&nbsp; &nbsp; // 自动上传<br/>&nbsp; &nbsp; auto : true ,<br/>&nbsp; &nbsp; // 选择文件按钮<br/>&nbsp; &nbsp; pick: &#39;.updateHeadImg&#39;,<br/>&nbsp; &nbsp; // 分片大小<br/>&nbsp; &nbsp; chunkSize: 5242880,&nbsp;<br/>&nbsp; &nbsp; // 单个文件大小<br/>&nbsp; &nbsp; fileSingleSizeLimit : 5242880,<br/>&nbsp; &nbsp; // 文件总数<br/>&nbsp; &nbsp; fileNumLimit : 2,<br/>&nbsp; &nbsp; // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！<br/>&nbsp; &nbsp; accept: {<br/>&nbsp; &nbsp; &nbsp; &nbsp; title: &#39;Images&#39;,<br/>&nbsp; &nbsp; &nbsp; &nbsp; extensions: &#39;gif,jpg,jpeg,bmp,png&#39;,<br/>&nbsp; &nbsp; &nbsp; &nbsp; mimeTypes: &#39;image/*&#39;<br/>&nbsp; &nbsp; },<br/>&nbsp; &nbsp; resize: false<br/>});</span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; color: rgb(0, 0, 0); font-size: 16px;">其实pick就是上传按钮，server就是上传文件的接口，auto是开启了文件自动上传</span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; color: rgb(0, 0, 0); font-size: 16px;">如果想要点击上传的话，这样</span></p><p><span style="color: rgb(192, 0, 0); font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;"></span></p><pre class="brush:php;toolbar:false"><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">//点击开始上传<br/>$(&#39;#ctlBtn&#39;).click(function(){<br/>&nbsp; &nbsp; uploader.upload();<br/>});</span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">下面分别是上传成功和上传失败的的回调</span></p><pre class="brush:php;toolbar:false"><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">uploader.on( &#39;uploadSuccess&#39;, function(file,response) {<br/>&nbsp; console.log(response._raw);<br/>&nbsp; layer.close(load);<br/>&nbsp; $(&#39;.img&#39;).attr(&#39;src&#39;,response._raw);<br/>&nbsp; layer.msg(&#39;更新成功&#39;, {icon: 1,time: 1000});<br/>});<br/>uploader.on( &#39;uploadError&#39;, function( file ) {<br/>&nbsp; layer.msg(&#39;上传出错&#39;, {icon: 5,time: 1000});<br/>});</span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">如果上传文件比较大的话，上传进度条有非常好的用户体验。通过下面的代码控制。</span></p><pre class="brush:php;toolbar:false"><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">// 文件上传过程中创建进度条实时显示。<br/>uploader.on( &#39;uploadProgress&#39;, function( file, percentage ) {<br/>&nbsp; &nbsp; var $li = $( &#39;#&#39;+file.id ),<br/>&nbsp; &nbsp; &nbsp; &nbsp; $percent = $li.find(&#39;.progress .progress-bar&#39;);<br/>&nbsp; &nbsp; // 避免重复创建<br/>&nbsp; &nbsp; if ( !$percent.length ) {<br/>&nbsp; &nbsp; &nbsp; &nbsp; $percent = $(&#39;&lt;div class=&quot;progress progress-striped active&quot;&gt;&#39; +<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &#39;&lt;div class=&quot;progress-bar&quot; role=&quot;progressbar&quot; style=&quot;width: 0%&quot;&gt;&#39; +<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &#39;&lt;/div&gt;&#39; +<br/>&nbsp; &nbsp; &nbsp; &nbsp; &#39;&lt;/div&gt;&#39;).appendTo( $li ).find(&#39;.progress-bar&#39;);<br/>&nbsp; &nbsp; }<br/>&nbsp; &nbsp; $li.find(&#39;p.state&#39;).text(&#39;上传中...&#39;);<br/>&nbsp; &nbsp; $percent.css( &#39;width&#39;, percentage * 100 + &#39;%&#39; );<br/>});</span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">还有两个常用的就是上传完成和上传错误提示的回调</span></p><pre class="brush:php;toolbar:false"><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">uploader.on( &#39;uploadComplete&#39;, function( file ) {<br/>&nbsp; &nbsp; $( &#39;#&#39;+file.id ).find(&#39;.progress&#39;).fadeOut();<br/>});<br/>//上传出错提示<br/>uploader.on(&quot;error&quot;, function (type) {<br/>&nbsp; switch(type){<br/>case &#39;Q_EXCEED_NUM_LIMIT&#39;:<br/>&nbsp; layer.msg(&#39;兄dei,换头像不用这么勤吧&#39;, {icon: 5,time: 1000});<br/>&nbsp; break;<br/>case &#39;F_DUPLICATE&#39;:<br/>&nbsp; layer.msg(&#39;兄dei,你这个头像刚刚用过了好吗&#39;, {icon: 5,time: 1000});<br/>&nbsp; break;<br/>&nbsp; case &#39;Q_TYPE_DENIED&#39;:<br/>&nbsp; layer.msg(&#39;兄dei,你这是在玩火啊&#39;, {icon: 5,time: 1000});<br/>&nbsp; break;<br/>default:<br/>&nbsp; layer.msg(type, {icon: 5,time: 1000});<br/>}<br/>});<br/></span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">上面基本上是大部分比较实用的功能，如果有不明白的地方可以在文章下面留言。</span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px;">官网上对参数的讲解都还蛮详细的。相对是一款比较容易上手的插件！</span></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

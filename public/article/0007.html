@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/index/css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1406557_m6tloezxwpo.css">
+    <title>利用PHPWORD类替换word模版文字，图片等-PHP54+ - 专注技术交流与资源分享</title>
+    <meta name='keywords' content='PHPWORD,PHPWORD替换,替换文字,替换图片,PHP操作文件,PHP教程' />
+    <meta name='description' content='今天有个需求是生成销售合同，其中有一些客户信息，还有销售产品的表格图片信息等。替换图片文字之前都做过，有些经验，创建表格也弄过，就是替换表格真是让我一头雾水。' />
+</head>
+
+<body>
+    <header>
+    <nav>
+        <span><a href="/" title="PHP54+">PHP54+</a></span>
+        <!-- <span>
+            <a href="/category.html">PHP</a>
+            <div class="detail">
+                <ul>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+1</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+2</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+13</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+14</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+15</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+61</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+71</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+81</a></li>
+                    <li><a href="javascript:;">大家好，欢迎来到PHP54+91</a></li>
+                </ul>
+            </div>
+        </span> -->
+                    <span><a href="/list.html" title="所有文章" >所有文章</a></span>
+                    <span><a href="/about.html" title="关于我 / 留言" >关于我 / 留言</a></span>
+                    <span><a href="/coupon.html" title="领券购物" >领券购物</a></span>
+            </nav>
+</header>
+
+    <div class="contain">
+        <div class="left">
+            <h3>利用PHPWORD类替换word模版文字，图片等</h3>
+            <div class="introduction">今天有个需求是生成销售合同，其中有一些客户信息，还有销售产品的表格图片信息等。替换图片文字之前都做过，有些经验，创建表格也弄过，就是替换表格真是让我一头雾水。</div>
+            <!-- <div class="content"></div> -->
+            <div class="content"><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">还是先把相关文件分享给你们 PHPWORD类</span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">链接：https://pan.baidu.com/s/1d0bmve6xMrHN-GA2z5Wmbg 密码：tmy2</span></p><p><img src="/ueditor/php/upload/image/20180919/1537352606646767.png" title="1537352606646767.png" alt="image.png"/></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">里面是word包和一些测试文件</span></p><p><br/></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 20px;">1.第一步引入文件autoload.php，这是这个包的自动加载文件，所以引入这个就行了</span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">这是个老项目用的是TP3.1的框架，所以我是用vendor引入的</span></p><pre class="brush:php;toolbar:false"><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">vendor(&quot;ReplaceWord.autoload&quot;);<br/></span></pre><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 20px;"><br/></span></p><p><span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 20px;">2.第二步创建模版文件，首先我来创建一个测试使用的word模版文件&nbsp;</span></p><p><img src="/ueditor/php/upload/image/20180919/1537352881110393.png" title="1537352881110393.png" alt="image.png" width="465" height="173"/></p><pre class="brush:php;toolbar:false"><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">$templateProcessor&nbsp;=&nbsp;new&nbsp;\PhpOffice\PhpWord\TemplateProcessor(&#39;public/word/Template.docx&#39;);<br/>$templateProcessor-&gt;setValue(&#39;Name&#39;,&nbsp;&#39;PHP54技术博客&#39;);<br/>$templateProcessor-&gt;setImg(&#39;Image&#39;,[&#39;src&#39;&nbsp;=&gt;&nbsp;&#39;public/img/logo.png&#39;]);<br/>$templateProcessor-&gt;saveAs(&#39;public/word/Template1.docx&#39;);<br/></span></pre><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">首先是实例化word类&nbsp; 参数就是模版文件的地址</span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai; color: rgb(192, 0, 0);">setValue是将用与替换文字文字&nbsp; setValue(&#39;Name&#39;, &#39;PHP54技术博客&#39;);是将word文档中的 ${Name}替换为PHP54技术博客</span></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai; color: rgb(192, 0, 0);">setImg是用与替换图片的setImg(&#39;Image&#39;,[&#39;src&#39; =&gt; &#39;public/img/logo.png&#39;]); 是将word文档中的${Image}<span style="font-family: 楷体, 楷体_GB2312, SimKai; font-size: 16px; color: rgb(0, 0, 0);">替换为站点中的图片</span>public/img/logo.png</span></p><p><span style="color: rgb(192, 0, 0); font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;"><img src="/ueditor/php/upload/image/20180919/1537353555893770.png" title="1537353555893770.png" alt="image.png" width="537" height="241"/></span></p><p><br/></p><p><span style="font-size: 16px; font-family: 楷体, 楷体_GB2312, SimKai;">其实比较简单但是好像并没有替换成表格的功能，真的头疼。</span></p><p><font face="楷体, 楷体_GB2312, SimKai">但是还是想到一个办法就是生成一个表格图片然后用替换图片的形式，将表格放到word中，听起来就比较复杂，但是客户要求没办法。</font></p><p><font face="楷体, 楷体_GB2312, SimKai"></font></p><pre class="brush:php;toolbar:false">function&nbsp;create_table(){
+&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;array();//生成演示数据
+&nbsp;&nbsp;&nbsp;&nbsp;for($i&nbsp;=&nbsp;0;$i&nbsp;&lt;&nbsp;10;&nbsp;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[]&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;nice_name&#39;&nbsp;=&gt;&nbsp;&#39;测试名&#39;&nbsp;.&nbsp;$i,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;zhuang&#39;&nbsp;=&gt;&nbsp;100,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;xian&#39;&nbsp;=&gt;&nbsp;50,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;he&#39;&nbsp;=&gt;&nbsp;50,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;zhuang_dui&#39;&nbsp;=&gt;&nbsp;500,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;xian_dui&#39;&nbsp;=&gt;&nbsp;5000,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;$params&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;row&#39;&nbsp;=&gt;&nbsp;11,//数据的行数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;file_name&#39;&nbsp;=&gt;&nbsp;&#39;1.png&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;title&#39;&nbsp;=&gt;&nbsp;&#39;数据表&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;table_time&#39;&nbsp;=&gt;&nbsp;&#39;2018-4-29&nbsp;22:50:43&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;data&#39;&nbsp;=&gt;&nbsp;$data
+&nbsp;&nbsp;&nbsp;&nbsp;];
+&nbsp;&nbsp;&nbsp;&nbsp;$base&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;border&#39;&nbsp;=&gt;&nbsp;10,//图片外边框
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;file_path&#39;&nbsp;=&gt;&nbsp;&#39;img/&#39;,//图片保存路径
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;title_height&#39;&nbsp;=&gt;&nbsp;30,//报表名称高度
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;title_font_size&#39;&nbsp;=&gt;&nbsp;16,//报表名称字体大小
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;font_ulr&#39;&nbsp;=&gt;&nbsp;&#39;img/simsun.ttc&#39;,//字体文件路径
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;text_size&#39;&nbsp;=&gt;&nbsp;12,//正文字体大小
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;row_hight&#39;&nbsp;=&gt;&nbsp;30,//每行数据行高
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;filed_id_width&#39;&nbsp;=&gt;&nbsp;60,//序号列的宽度
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;filed_name_width&#39;&nbsp;=&gt;&nbsp;120,//玩家名称的宽度
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;filed_data_width&#39;&nbsp;=&gt;&nbsp;100,//数据列的宽度
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;table_header&#39;&nbsp;=&gt;&nbsp;[&#39;序号&#39;,&#39;昵称&#39;,&#39;数据1&#39;,&#39;数据2&#39;,&#39;数据3&#39;,&#39;数据4&#39;,&#39;数据5&#39;],//表头文字
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;column_text_offset_arr&#39;&nbsp;=&gt;&nbsp;[45,90,55,55,55,65,65],//表头文字左偏移量
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;row_text_offset_arr&#39;&nbsp;=&gt;&nbsp;[50,110,90,90,90,90,90],//数据列文字左偏移量
+&nbsp;&nbsp;&nbsp;&nbsp;];
+&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;img_width&#39;]&nbsp;=&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_data_width&#39;]&nbsp;*&nbsp;5&nbsp;+&nbsp;$base[&#39;border&#39;]&nbsp;*&nbsp;2;//图片宽度
+&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;img_height&#39;]&nbsp;=&nbsp;$params[&#39;row&#39;]&nbsp;*&nbsp;$base[&#39;row_hight&#39;]&nbsp;+&nbsp;$base[&#39;border&#39;]&nbsp;*&nbsp;2&nbsp;+&nbsp;$base[&#39;title_height&#39;];//图片高度
+&nbsp;&nbsp;&nbsp;&nbsp;$border_top&nbsp;=&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;title_height&#39;];//表格顶部高度
+&nbsp;&nbsp;&nbsp;&nbsp;$border_bottom&nbsp;=&nbsp;$base[&#39;img_height&#39;]&nbsp;-&nbsp;$base[&#39;border&#39;];//表格底部高度
+&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;column_x_arr&#39;]&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;],//第一列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;],//第二列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_data_width&#39;]&nbsp;*&nbsp;1,//第三列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_data_width&#39;]&nbsp;*&nbsp;2,//第四列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_data_width&#39;]&nbsp;*&nbsp;3,//第五列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_data_width&#39;]&nbsp;*&nbsp;4,//第五列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;filed_id_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_name_width&#39;]&nbsp;+&nbsp;$base[&#39;filed_data_width&#39;]&nbsp;*&nbsp;5,//第五列边框线x轴像素
+&nbsp;&nbsp;&nbsp;&nbsp;];
+&nbsp;&nbsp;&nbsp;&nbsp;$img&nbsp;=&nbsp;imagecreatetruecolor($base[&#39;img_width&#39;],&nbsp;$base[&#39;img_height&#39;]);//创建指定尺寸图片
+&nbsp;&nbsp;&nbsp;&nbsp;$bg_color&nbsp;=&nbsp;imagecolorallocate($img,&nbsp;255,&nbsp;255,&nbsp;255);//设定图片背景色
+&nbsp;&nbsp;&nbsp;&nbsp;$text_coler&nbsp;=&nbsp;imagecolorallocate($img,&nbsp;0,&nbsp;0,&nbsp;0);//设定文字颜色
+&nbsp;&nbsp;&nbsp;&nbsp;$border_coler&nbsp;=&nbsp;imagecolorallocate($img,&nbsp;0,&nbsp;0,&nbsp;0);//设定边框颜色
+&nbsp;&nbsp;&nbsp;&nbsp;$white_coler&nbsp;=&nbsp;imagecolorallocate($img,&nbsp;255,&nbsp;255,&nbsp;255);//设定边框颜色
+&nbsp;&nbsp;&nbsp;&nbsp;imagefill($img,&nbsp;0,&nbsp;0,&nbsp;$bg_color);//填充图片背景色
+&nbsp;&nbsp;&nbsp;&nbsp;//先填充一个黑色的大块背景
+&nbsp;&nbsp;&nbsp;&nbsp;imagefilledrectangle($img,&nbsp;$base[&#39;border&#39;],&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;title_height&#39;],&nbsp;$base[&#39;img_width&#39;]&nbsp;-&nbsp;$base[&#39;border&#39;],&nbsp;$base[&#39;img_height&#39;]&nbsp;-&nbsp;$base[&#39;border&#39;],&nbsp;$border_coler);//画矩形
+&nbsp;&nbsp;&nbsp;&nbsp;//再填充一个小两个像素的&nbsp;背景色区域，形成一个两个像素的外边框
+&nbsp;&nbsp;&nbsp;&nbsp;imagefilledrectangle($img,&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;2,&nbsp;$base[&#39;border&#39;]&nbsp;+&nbsp;$base[&#39;title_height&#39;]&nbsp;+&nbsp;2,&nbsp;$base[&#39;img_width&#39;]&nbsp;-&nbsp;$base[&#39;border&#39;]&nbsp;-&nbsp;2,&nbsp;$base[&#39;img_height&#39;]&nbsp;-&nbsp;$base[&#39;border&#39;]&nbsp;-&nbsp;2,&nbsp;$bg_color);//画矩形
+&nbsp;&nbsp;&nbsp;&nbsp;//画表格纵线&nbsp;及&nbsp;写入表头文字
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($base[&#39;column_x_arr&#39;]&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$x){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageline($img,&nbsp;$x,&nbsp;$border_top,&nbsp;$x,&nbsp;$border_bottom,$border_coler);//画纵线
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagettftext($img,&nbsp;$base[&#39;text_size&#39;],&nbsp;0,&nbsp;$x&nbsp;-&nbsp;$base[&#39;column_text_offset_arr&#39;][$key]&nbsp;+&nbsp;1,&nbsp;$border_top&nbsp;+&nbsp;$base[&#39;row_hight&#39;]&nbsp;-&nbsp;8,&nbsp;$text_coler,&nbsp;$base[&#39;font_ulr&#39;],&nbsp;$base[&#39;table_header&#39;][$key]);//写入表头文字
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//画表格横线
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($params[&#39;data&#39;]&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$item){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$border_top&nbsp;+=&nbsp;$base[&#39;row_hight&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageline($img,&nbsp;$base[&#39;border&#39;],&nbsp;$border_top,&nbsp;$base[&#39;img_width&#39;]&nbsp;-&nbsp;$base[&#39;border&#39;],&nbsp;$border_top,&nbsp;$border_coler);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagettftext($img,&nbsp;$base[&#39;text_size&#39;],&nbsp;0,&nbsp;$base[&#39;column_x_arr&#39;][0]&nbsp;-&nbsp;$base[&#39;row_text_offset_arr&#39;][0],&nbsp;$border_top&nbsp;+&nbsp;$base[&#39;row_hight&#39;]&nbsp;-&nbsp;10,&nbsp;$text_coler,&nbsp;$base[&#39;font_ulr&#39;],&nbsp;$key&nbsp;+&nbsp;1);//写入序号
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sub&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($item&nbsp;as&nbsp;$value){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sub++;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagettftext($img,&nbsp;$base[&#39;text_size&#39;],&nbsp;0,&nbsp;$base[&#39;column_x_arr&#39;][$sub]&nbsp;-&nbsp;$base[&#39;row_text_offset_arr&#39;][$sub],&nbsp;$border_top&nbsp;+&nbsp;$base[&#39;row_hight&#39;]&nbsp;-&nbsp;10,&nbsp;$text_coler,&nbsp;$base[&#39;font_ulr&#39;],&nbsp;$value);//写入data数据
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//计算标题写入起始位置
+&nbsp;&nbsp;&nbsp;&nbsp;$title_fout_box&nbsp;=&nbsp;imagettfbbox($base[&#39;title_font_size&#39;],&nbsp;0,&nbsp;$base[&#39;font_ulr&#39;],&nbsp;$params[&#39;title&#39;]);//imagettfbbox()&nbsp;返回一个含有&nbsp;8&nbsp;个单元的数组表示了文本外框的四个角：
+&nbsp;&nbsp;&nbsp;&nbsp;$title_fout_width&nbsp;=&nbsp;$title_fout_box[2]&nbsp;-&nbsp;$title_fout_box[0];//右下角&nbsp;X&nbsp;位置&nbsp;-&nbsp;左下角&nbsp;X&nbsp;位置&nbsp;为文字宽度
+&nbsp;&nbsp;&nbsp;&nbsp;$title_fout_height&nbsp;=&nbsp;$title_fout_box[1]&nbsp;-&nbsp;$title_fout_box[7];//左下角&nbsp;Y&nbsp;位置-&nbsp;左上角&nbsp;Y&nbsp;位置&nbsp;为文字高度
+&nbsp;&nbsp;&nbsp;&nbsp;//居中写入标题
+&nbsp;&nbsp;&nbsp;&nbsp;imagettftext($img,&nbsp;$base[&#39;title_font_size&#39;],&nbsp;0,&nbsp;($base[&#39;img_width&#39;]&nbsp;-&nbsp;$title_fout_width)/2,&nbsp;$base[&#39;title_height&#39;],&nbsp;$text_coler,&nbsp;$base[&#39;font_ulr&#39;],&nbsp;$params[&#39;title&#39;]);
+&nbsp;&nbsp;&nbsp;&nbsp;//写入制表时间
+&nbsp;&nbsp;&nbsp;&nbsp;imagettftext($img,&nbsp;$base[&#39;text_size&#39;],&nbsp;0,&nbsp;$base[&#39;border&#39;],&nbsp;$base[&#39;title_height&#39;],&nbsp;$text_coler,&nbsp;$base[&#39;font_ulr&#39;],&nbsp;&#39;时间：&#39;&nbsp;.&nbsp;$params[&#39;table_time&#39;]);
+&nbsp;&nbsp;&nbsp;&nbsp;$save_path&nbsp;=&nbsp;$base[&#39;file_path&#39;]&nbsp;.&nbsp;$params[&#39;file_name&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;if(!is_dir($base[&#39;file_path&#39;])){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir($base[&#39;file_path&#39;],0777,true);//可创建多级目录
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;imagepng($img,$save_path);//输出图片，输出png使用imagepng方法，输出gif使用imagegif方法
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&#39;&lt;img&nbsp;src=&quot;/&#39;.$save_path.&#39;&quot;/&gt;&#39;;
+}
+create_table();</pre><p><img src="/ueditor/php/upload/image/20180919/1537354016528430.png" title="1537354016528430.png" alt="image.png"/></p><p>要注意的是生成表格使用了字体资源</p><p>这样就勉强实现了客户的需求，糟心</p><p><img src="/ueditor/php/upload/image/20180919/1537354148135859.png" title="1537354148135859.png" alt="image.png" width="632" height="294"/></p></div>
+            <div class="statement">
+                <p>作者：<span>陈佚</span></p>
+                <p>原文链接：<span>https://www.php54.com/sdfh.html</span></p>
+                <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+            </div>
+            <div class="related">
+                <span><i class="iconfont icon-tuijianwei"></i> 继续浏览</span>
+                <ul>
+                                        <li>
+                        <a href="/article/0005.html">
+                            <img src="/ueditor/php/upload/image/20180917/1537178276454802.png" alt="通过文件上传插件WebUploader实现文件上传">
+                            <span>通过文件上传插件WebUploader实现文件上传</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000v.html">
+                            <img src="/ueditor/php/upload/image/20180912/1536713295882409.png" alt="原生PHP使用 PHPMAILER发送邮件 非常简单 ">
+                            <span>原生PHP使用 PHPMAILER发送邮件 非常简单 </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000m.html">
+                            <img src="/ueditor/php/upload/image/20181210/1544438272616559.png" alt="PHP实现QQ第三方登录">
+                            <span>PHP实现QQ第三方登录</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/000h.html">
+                            <img src="/ueditor/php/upload/image/20181118/1542548890139995.jpg" alt="【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）">
+                            <span>【推荐】几种好用的PHP自定义加密函数（可逆/不可逆）</span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="/article/0004.html">
+                            <img src="/ueditor/php/upload/image/20180915/1537015662137490.png" alt="php大文件上传失败的原因及解决方法">
+                            <span>php大文件上传失败的原因及解决方法</span>
+                        </a>
+                    </li>
+                                        <p style="clear:both"></p>
+                </ul>
+            </div>
+
+            <div class="comment">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 参与讨论</span>
+                <div class="comment-form">
+                    <input type="number" name="qq" maxlength="11" placeholder="QQ（选填）" step="1" max="9999999999"><input type="text" name="nickname" maxlength="10" placeholder="昵称（必填）" required ><input type="email" name="email" maxlength="30" placeholder="回复通知邮箱（必填）" required >
+                    <textarea name="content" rows='2' width='100%' maxlength="256" required ></textarea>
+                    <button type="submit">提交</button>
+                    <button type="submit">取消@</button>
+                </div>
+                <ul>
+                    <li><span title="@陈佚">陈佚</span>：我一直在学习，我也一直在忘记。PHP应该一直在学习，我也一直在忘识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@伪装的大佬">伪装的大佬</span>：我一直在学习，我也一直在忘记。PH一直在学习，我也一直在忘一直在学习，我也一直在忘是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                    <li><span title="@陈佚">伪装的大佬</span>：我一直在学习，我也一直在忘一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一我一直在学习，我也一直在忘记。PHP应该是涉及知识最广的一</li>
+                </ul>
+                <div class="empty"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="php54-ad">
+                <span><i class="iconfont icon-kanguo1"></i> 围观</span>
+                <a href="/coupon.html">
+                    <img src="/static/index/img/activity.png" alt="推荐" width="100%">
+                </a>
+            </div>
+
+            <div class="php54-article">
+                <span><i class="iconfont icon-wenzhang"></i> 好文推荐</span>
+                <ul>
+                                        <li>1. <a href="/article/000t.html">windows apache 部署SSL证书 https</a></li>
+                                        <li>2. <a href="/article/000s.html">关于阿里云PHPMAILER 发送邮件不成功的问题</a></li>
+                                        <li>3. <a href="/article/000r.html">FileZilla 425  无法连接FTP 阿里云服务器</a></li>
+                                        <li>4. <a href="/article/000q.html">HTTP状态码列表</a></li>
+                                        <li>5. <a href="/article/000p.html">常规讲一讲关于博客的一些感想</a></li>
+                                    </ul>
+            </div>
+
+            <div class="php54-message">
+                <span><i class="iconfont icon-liuyanjianyi"></i> 最新留言</span>
+                <ul>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="捉">
+                        <span>空包网、真实代发网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 捉</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-28 10:18:29</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=654173488&spec=100" alt="单号网（代理接待）">
+                        <span>电商专用快递网站，空包网，单号网www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 单号网（代理接待）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-27 16:33:09</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="天赐">
+                        <span>拼多多商家专用快递单号，不超时，不降权，单号购买链接www.danhw.com</span>
+                        <span><i class="iconfont icon-ren"></i> 天赐</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-26 08:59:11</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521819&spec=100" alt="Foling Dow">
+                        <span>电商专用快递网站www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> Foling Dow</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-19 09:49:52</span>
+                    </li>
+                                        <li>
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=1092521989&spec=100" alt="糖糖（金牌售后）">
+                        <span>用快递找www.dh5u.com单号无忧</span>
+                        <span><i class="iconfont icon-ren"></i> 糖糖（金牌售后）</span>
+                        <span><i class="iconfont icon-shijian"></i> 2019-09-15 16:47:38</span>
+                    </li>
+                                    </ul>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="php54-side-toolbar">
+    <a>
+        <i class="iconfont icon-sousuo"></i>
+        <div class="search"><input type="text" maxlength="20" placeholder="回车进行搜索"></div>
+    </a>
+    <a>
+        <i class="iconfont icon-qrcode"></i>
+        <div class="qr-box">
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-public.jpg" alt="关注PHP54+公众号">
+                <p>关注公众号</p>
+            </div>
+
+            <div class="qr-item-box">
+                <img src="/static/index/img/wechat-cheni.jpg" alt="添加作者微信">
+                <p>作者微信</p>
+            </div>
+        </div>
+    </a>
+    <a href="#top">
+        <i class="iconfont icon-jiantou-copy-copy"></i>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="list">
+            <ul>
+                <li><a href="javascript:;">PHP54+首页</a></li>
+                <li><a href="javascript:;">所有文章</a></li>
+                <li><a href="javascript:;">关于作者/留言</a></li>
+                <li><i class="iconfont icon-sitemap"></i> <a href="/sitemap.html">网站地图</a></li>
+                <li><i class="iconfont icon-rss"></i> <a href="/sitemap.xml">Rss订阅</a></li>
+            </ul>
+        </div>
+        <div class="list">
+                <ul>
+                    <li><a href="/cookie.html"><i class="iconfont icon-chucun"></i> Cookie政策</a></li>
+                    <li><i class="iconfont icon-beian"></i> 京ICP备18046247号-1</li>
+                    <li><i class="iconfont icon-jingwuicon_svg-"></i> 京公网安备 11010502037664号</li>
+                </ul>
+            </div>
+        <div class="list">
+            <ul>
+                <li>陈佚-CHENI | PHP全栈工程师 * 3+ years</li>
+                <li>电话联系（仅限紧急情况）</li>
+                <li><i class="iconfont icon-dianhua"></i> <a href="tel:15901432750">15901432750</a></li>
+                <li>微信联系（活跃）</li>
+                <li><i class="iconfont icon-wechat"></i> K65480169</li>
+                <li>QQ（常年不在线）</li>
+                <li><i class="iconfont icon-qq"></i> 654080169</li>
+                <li>邮箱方式（博客运营主要联系方式）</li>
+                <li><i class="iconfont icon-email"></i> <a href="mailto:cheni@php54.com">cheni@php54.com</a></li>
+            </ul>
+        </div>
+        <p style="clear:both"></p>
+        <span>© PHP54+ 2019</span>
+    </div>
+</footer>
+</body>
+
+<script src="/static/index/js/jquery-1.9.1.min.js"></script>
+<script src="/static/index/js/index.js"></script>
+</html>

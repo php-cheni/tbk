@@ -55,30 +55,31 @@
 	</div>
 <div class="page-content">
 <div class="page-header">
-	<h1>淘口令<small><i class="ace-icon fa fa-angle-double-right"></i>生成淘口令</small></h1>
+	<h1>淘口令<small><i class="ace-icon fa fa-angle-double-right"></i>解析淘口令</small></h1>
 </div>
 
 <div class="row">
 	<div class="col-xs-12">
 	<form class="form-horizontal layui-form" role="form">
-		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">链接</label>
-			<div class="col-sm-9">
-				<textarea name="url" rows="5" lay-verify="required" maxlength="200" placeholder="淘宝链接" class="col-xs-10 col-sm-5" style="padding: 5px;"></textarea>
-			</div>
-		</div>
 
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">淘口令</label>
 			<div class="col-sm-9">
-				<textarea rows="5" maxlength="200" placeholder="淘口令" class="col-xs-10 col-sm-5 notify" style="padding: 5px;"></textarea>
+				<input type="text" name="tpwd" lay-verify="required" placeholder="淘口令" id="form-field-1" class="col-xs-10 col-sm-5">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">还原数据</label>
+			<div class="col-sm-9">
+				<textarea rows="10" maxlength="200" placeholder="还原数据" class="col-xs-10 col-sm-5 notify" style="padding: 5px;"></textarea>
 			</div>
 		</div>
 
 		<div class="space-4"></div>
 		<div class="clearfix form-actions">
 			<div class="col-md-9">
-				<button class="btn btn-info"  lay-submit lay-filter="createtpwd" type="button"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+				<button class="btn btn-info"  lay-submit lay-filter="tpwdConvert" type="button"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
 				&nbsp; &nbsp; &nbsp;
 				<button class="btn" type="reset"><i class="ace-icon fa fa-undo bigger-110"></i>重置</button>
 			</div>
@@ -112,10 +113,10 @@
 <script src="/static/layui/layui.all.js"></script>
 <script>
 var form = layui.form;
-form.on('submit(createtpwd)', function(data){
+form.on('submit(tpwdConvert)', function(data){
 	var load=layer.msg('创建中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
-	    url: "{:url('tbk/createtpwd')}",
+	    url: "{:url('tbk/tpwdConvert')}",
 	    type: "POST",
 	    dataType:"json",
 	    data:$("form").serialize(),

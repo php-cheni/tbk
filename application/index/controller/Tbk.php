@@ -22,52 +22,68 @@ class Tbk extends Common
 
 	public function tlj()
 	{
-		return $this->fetch();
-	}
+		if ($_POST) {
+			$validate = new Validate(['skuid' => 'require|number', 'money' => 'require|number', 'num' => 'require|number']);
+			if (!$validate->check($_POST)) {
+				return json(['error' => $validate->getError()]);
+			}
 
-	public function createtlj()
-	{
-		$validate = new Validate(['skuid' => 'require|number', 'money' => 'require|number', 'num' => 'require|number']);
-		if (!$validate->check($_POST)) {
-			return json(['error' => $validate->getError()]);
-		}
-
-		$req = new \TbkDgVegasTljCreateRequest;
-		$req->setAdzoneId("109652200299");
-		$req->setItemId($_POST['skuid']);
-		$req->setTotalNum($_POST['num']);
-		$req->setName("淘礼金来啦");
-		$req->setUserTotalWinNumLimit("1");
-		$req->setSecuritySwitch("true");
-		$req->setPerFace($_POST['money']);
-		$req->setSendStartTime(date('Y-m-d H:i:s'));
-		$req->setSendEndTime(date("Y-m-d 23:59:59"));
-		$resp = json_decode(json_encode($this->c->execute($req)), true);
-		$file = fopen("tlj.log", "a");
-		fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
-		fclose($file);
-		if ($resp['result']['success']) {
-			return $this->createtpwd($resp['result']['model']['send_url']) . "\n" . $resp['result']['model']['send_url'];
-		}else{
-			return $resp['error_response']['sub_msg'];
+			$req = new \TbkDgVegasTljCreateRequest;
+			$req->setAdzoneId("109652200299");
+			$req->setItemId($_POST['skuid']);
+			$req->setTotalNum($_POST['num']);
+			$req->setName("淘礼金来啦");
+			$req->setUserTotalWinNumLimit("1");
+			$req->setSecuritySwitch("true");
+			$req->setPerFace($_POST['money']);
+			$req->setSendStartTime(date('Y-m-d H:i:s'));
+			$req->setSendEndTime(date("Y-m-d 23:59:59"));
+			$resp = json_decode(json_encode($this->c->execute($req)), true);
+			$file = fopen("tlj.log", "a");
+			fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
+			fclose($file);
+			if ($resp['result']['success']) {
+				return "淘口令：" . $this->createtpwd($resp['result']['model']['send_url']) . "\n 券地址：" . $resp['result']['model']['send_url'];
+			} else {
+				return isset($resp['sub_msg']) ? $resp['sub_msg'] : $resp['result']['msg_info'];
+			}
+		} else {
+			return $this->fetch();
 		}
 	}
 
 	public function tpwd()
 	{
-		return $this->fetch();
+		if ($_POST) {
+			$req = new \TbkTpwdCreateRequest;
+			$req->setUserId("lalalala灬别恋她");
+			$req->setText("领券购物，快乐生活");
+			$req->setUrl($_POST['url']);
+			$resp = json_decode(json_encode($this->c->execute($req)), true);
+			$file = fopen("tpwd.log", "a");
+			fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
+			fclose($file);
+			return isset($resp['sub_msg']) ? $resp['sub_msg'] : $resp['data']['model'];
+		} else {
+			return $this->fetch();
+		}
 	}
 
-	public function createtpwd($url)
+	public function tpwdConvert()
 	{
-		$req = new \TbkTpwdCreateRequest;
-		$req->setUserId("lalalala灬别恋她");
-		$req->setText("领券购物，快乐生活");
-		$req->setUrl($url);
-		$resp = json_decode(json_encode($this->c->execute($req)), true);
-		$file = fopen("tpwd.log", "a");
-		fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
-		fclose($file);
-		return isset($resp['sub_msg']) ? $resp['sub_msg'] : $resp['data']['model'];
+		if ($_POST) {
+			$data = json_decode(file_get_contents("http://www.taofake.com/index/tools/gettkljm.html?tkl=" . $_POST['tpwd']), true);
+			if (empty($data) || $data['msg'] != 'ok') {
+				return '接口调用异常';
+			}
+			
+			$content = '';
+			foreach ($data['data'] as $key => $value) {
+				$content .= "$key ：$value\n";
+			}
+			return $content;
+		} else {
+			return $this->fetch();
+		}
 	}
 }

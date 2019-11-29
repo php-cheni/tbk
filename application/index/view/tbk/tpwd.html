@@ -115,8 +115,8 @@ var form = layui.form;
 form.on('submit(createtpwd)', function(data){
 	var load=layer.msg('请求中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
-	    url: "{:url('tbk/tpwd')}",
-	    type: "POST",
+	    url: "{:url('tbk/createtpwd')}",
+	    type: "GET",
 	    dataType:"json",
 	    data:$("form").serialize(),
 	    success: function(data){

@@ -20,3 +20,5 @@
 {"data":{"model":"￥Un8PYxaEhvt￥"},"request_id":"4qqtfodhq1r7"}
 2019-11-28 11:28:22
 {"data":{"model":"￥7qK9Yxb2AIz￥"},"request_id":"o3smxs7i3718"}
+2019-11-28 17:24:58
+{"code":15,"msg":"Remote service error","sub_code":"20000","sub_msg":"口令跳转url不支持口令转换","request_id":"iigy99d2klkd"}

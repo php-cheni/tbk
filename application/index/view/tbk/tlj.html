@@ -128,9 +128,9 @@
 <script>
 var form = layui.form;
 form.on('submit(createtlj)', function(data){
-	var load=layer.msg('创建中...', {icon:16,shade:[0.1, '#fff'],time:false });
+	var load=layer.msg('请求中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
-	    url: "{:url('tbk/createtlj')}",
+	    url: "{:url('tbk/tlj')}",
 	    type: "POST",
 	    dataType:"json",
 	    data:$("form").serialize(),

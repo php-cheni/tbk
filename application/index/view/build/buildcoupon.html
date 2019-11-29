@@ -71,7 +71,7 @@
             if (data.success) {
                 // layer.msg(data.success, { icon: 1, time: 1000 });
                 $.each(data.data, function (index, val) {
-                    $('.goods ul').append('<li><div><a href="' + val.coupon_share_url + '"><img src="' + val.pict_url + '" width="100%"></a><p><a href="' + val.coupon_share_url + '">' + val.title + '</a></p><b>￥' + val.zk_final_price + '</b>&nbsp;<b>￥' + val.price + '</b><span><i class="iconfont icon-youhuiquan"></i>￥' + val.coupon_amount + '</span><p></p><span>月销：' + val.volume + '</span><span>' + val.shop_title + '</span><button class="copybtn" onclick="copytpwd(\'' + val.coupon_share_url + '\', this)";>生 成 淘 口 令</button></div></li>');
+                    $('.goods ul').append('<li><div><a href="' + val.coupon_share_url + '"><img src="' + val.pict_url + '" width="100%"></a><p><a href="' + val.coupon_share_url + '">' + val.title + '</a></p><b>￥' + val.zk_final_price + '</b>&nbsp;<b>￥' + val.price + '</b><span><i class="iconfont icon-youhuiquan"></i>￥' + val.coupon_amount + '</span><p></p><span>月销：' + val.volume + '</span><span>' + val.shop_title + '</span><button class="copybtn" onclick="copytpwd(\'' + val.coupon_share_url + '\', ' + val.num_iid + ',this)";>生 成 淘 口 令</button></div></li>');
                 });
                 $('.php54-page ul').html(data.page);
             } else {
@@ -80,7 +80,7 @@
         }
     });
 
-    function copytpwd(url, obj) {
+    function copytpwd(url, goodid, obj) {
         $(obj).css('background-color', '#65b908');
         if (/Android|webOS|iPhone|iPod|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE|BlackBerry/i.test(navigator.userAgent)) {
             var ua = window.navigator.userAgent.toLowerCase();

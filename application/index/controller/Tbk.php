@@ -43,7 +43,7 @@ class Tbk extends Common
 			fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
 			fclose($file);
 			if ($resp['result']['success']) {
-				return "淘口令：" . $this->createtpwd($resp['result']['model']['send_url']) . "\n 券地址：" . $resp['result']['model']['send_url'];
+				return "淘口令：" . $this->tpwd($resp['result']['model']['send_url']) . "\n 券地址：" . $resp['result']['model']['send_url'];
 			} else {
 				return isset($resp['sub_msg']) ? $resp['sub_msg'] : $resp['result']['msg_info'];
 			}
@@ -52,13 +52,14 @@ class Tbk extends Common
 		}
 	}
 
-	public function tpwd()
+	public function tpwd($url = "")
 	{
-		if ($_POST) {
+		if ($_POST || $url) {
+			$url = $_POST['url'] ? $_POST['url'] : $url;
 			$req = new \TbkTpwdCreateRequest;
 			$req->setUserId("lalalala灬别恋她");
 			$req->setText("领券购物，快乐生活");
-			$req->setUrl($_POST['url']);
+			$req->setUrl($url);
 			$resp = json_decode(json_encode($this->c->execute($req)), true);
 			$file = fopen("tpwd.log", "a");
 			fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
@@ -76,7 +77,7 @@ class Tbk extends Common
 			if (empty($data) || $data['msg'] != 'ok') {
 				return '接口调用异常';
 			}
-			
+
 			$content = '';
 			foreach ($data['data'] as $key => $value) {
 				$content .= "$key ：$value\n";

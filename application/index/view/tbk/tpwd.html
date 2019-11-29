@@ -116,7 +116,7 @@ form.on('submit(createtpwd)', function(data){
 	var load=layer.msg('创建中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
 	    url: "{:url('tbk/createtpwd')}",
-	    type: "POST",
+	    type: "GET",
 	    dataType:"json",
 	    data:$("form").serialize(),
 	    success: function(data){

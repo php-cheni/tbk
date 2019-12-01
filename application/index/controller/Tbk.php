@@ -53,7 +53,7 @@ class Tbk extends Common
 		}
 	}
 
-	public function tpwd()
+	public function tpwd($url = "")
 	{
 		return $this->fetch();
 	}

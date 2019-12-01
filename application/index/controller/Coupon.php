@@ -63,6 +63,7 @@ class Coupon extends Controller
 		return $resp ? json(['success' => '共查询到' . (empty($resp['total_results']) ? 0 : $resp['total_results']) . '件商品', 'data' => $resp['result_list']['map_data'], 'page' => $page->show('/coupon')]) : json(['msg' => '未查询到相关商品']);
 	}
 
+	// 生成淘口令
 	public function createtpwd($tpwd)
 	{
 		$req = new \TbkTpwdCreateRequest;
@@ -76,30 +77,30 @@ class Coupon extends Controller
 		return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
 	}
 
-	// public function createtlj($id = '531855523977', $m = '3.5', $n = '3')
+	// 生成淘礼金口令
+	// public function createtpwd($tpwd)
 	// {
-	// 	if (empty($id) || empty($m)) {
-	// 		return '参数错误';
-	// 	}
-
 	// 	$req = new \TbkDgVegasTljCreateRequest;
 	// 	$req->setAdzoneId("109652200299");
-	// 	$req->setItemId($id);
-	// 	$req->setTotalNum($n);
+	// 	$req->setItemId($tpwd);
+	// 	$req->setTotalNum(1);
 	// 	$req->setName("淘礼金来啦");
 	// 	$req->setUserTotalWinNumLimit("1");
 	// 	$req->setSecuritySwitch("true");
-	// 	$req->setPerFace($m);
+	// 	$req->setPerFace(0.01);
 	// 	$req->setSendStartTime(date('Y-m-d H:i:s'));
 	// 	$req->setSendEndTime(date("Y-m-d 23:59:59"));
 	// 	$resp = json_decode(json_encode($this->c->execute($req)), true);
-	// 	$file = fopen("createtlj.log", "a");
-	// 	fwrite($file, json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
+	// 	$file = fopen("tlj.log", "a");
+	// 	fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
 	// 	fclose($file);
-	// 	print_r($resp);
-	// 	return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
+	// 	if ($resp['result']['success']) {
+	// 		return $this->createtpwd($resp['result']['model']['send_url']);
+	// 	} else {
+	// 		return isset($resp['sub_msg']) ? $resp['sub_msg'] : $resp['result']['msg_info'];
+	// 	}
 	// }
-
+	
 	// 查询选品库 
 	public function test1()
 	{
@@ -117,7 +118,7 @@ class Coupon extends Controller
 		// return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
 	}
 
-	public function test2()
+	public function KeplerApi()
 	{
 		$jd = new \KeplerApi;
 		// $name ='jd.union.open.goods.jingfen.query';
@@ -153,31 +154,5 @@ class Coupon extends Controller
 
 		$req = $jd->GetKelperApiData($name, $data);
 		print_r(json_decode($req, true));
-	}
-
-	public function test3()
-	{
-		$req = new \TbkTpwdCreateRequest;
-		$req->setUserId("lalalala灬别恋她");
-		$req->setText("领券购物，快乐生活");
-		$req->setUrl('https://uland.taobao.com/taolijin/edetail?eh=MzGAjI9vHnmZuQF0XRz0iAXoB%2BDaBK5LQS0Flu%2FfbSp4QsdWMikAalrisGmre1Id0BFAqRODu1096TIw3BhWvVtu5ANYhEex1%2FyRc8386VhL10wcj%2Fb1%2FiH6uqoYBiRTHmFkP3%2BVZhbhMLe%2ByTjXZENSLYZ0Y7qXDhdeMwwGQlMNPFgv0tpQ0SbEcvCyfFGM%2B4FEDyJoJe6YlXGWYyngws5L3gPiEfFzKXD5rVyOx%2F8rKzgE%2Fq%2BLh0ycuTzCI8ktPkha51DJxdn%2BcBVGuURu7Y1J1dE2yfYoRYwpIuVYADcCGruttYDvNg%3D%3D&union_lens=lensId%3A0b0b4eab_0c0b_16e8df0c7ca_41c3%3Btraffic_flag%3Dlm');
-		$resp = json_decode(json_encode($this->c->execute($req)), true);
-		$file = fopen("tpwd.log", "a");
-		fwrite($file, "【 " . $resp['data']['model'] . " 】" . date('Y-m-d H:i:s') . PHP_EOL);
-		fclose($file);
-		return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
-	}
-
-	public function test4()
-	{
-		$data=Db::name('link_copy1')->select();
-		foreach ($data as $key => $value) {
-			$insert=[
-				'name'=> $value['name'],
-				'url'=> $value['url'],
-			];
-			$result = Db::name('link')->insert($insert);
-			echo $result?"1<br>":"0<br>";
-		}
 	}
 }

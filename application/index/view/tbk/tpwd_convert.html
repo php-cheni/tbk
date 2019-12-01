@@ -72,7 +72,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">还原数据</label>
 			<div class="col-sm-9">
-				<textarea rows="10" maxlength="200" placeholder="还原数据" class="col-xs-10 col-sm-5 notify" style="padding: 5px;"></textarea>
+				<textarea rows="15" maxlength="200" placeholder="还原数据" class="col-xs-10 col-sm-5 notify" style="padding: 5px;"></textarea>
 			</div>
 		</div>
 
@@ -114,7 +114,7 @@
 <script>
 var form = layui.form;
 form.on('submit(tpwdConvert)', function(data){
-	var load=layer.msg('创建中...', {icon:16,shade:[0.1, '#fff'],time:false });
+	var load=layer.msg('请求中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
 	    url: "{:url('tbk/tpwdConvert')}",
 	    type: "POST",

@@ -58,7 +58,7 @@ class News extends Common{
 	    $file = request()->file('file');
 	    $info = $file->validate(['size'=>2097152,'ext'=>'jpg,png,gif'])->move(ROOT_PATH . 'public' . DS . 'uploads');
 	    if($info){
-	        return json(['code'=>0,'msg'=>'上传成功！','data'=>['src'=>'/uploads/'.str_replace("\\","/",$info->getSaveName()),'title'=>'幽美集团']]);
+	        return json(['code'=>0,'msg'=>'上传成功！','data'=>['src'=>'/uploads/'.str_replace("\\","/",$info->getSaveName()),'title'=>'PHP54+']]);
 	    }else{
 	        return json(['error'=>$file->getError()]);
 	    }

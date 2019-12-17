@@ -140,7 +140,7 @@
         return null;
     }
 
-    let q = GetQueryString('q');
+    let q = GetQueryString('q') ? GetQueryString('q') : '';
     let p = GetQueryString('p') ? GetQueryString('p') : 1;
     $('input:first').val(q);
     var load = layer.msg('正在查询...', { icon: 16, shade: [0.1, '#fff'], time: false });

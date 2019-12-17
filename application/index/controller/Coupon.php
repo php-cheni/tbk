@@ -27,7 +27,7 @@ class Coupon extends Controller
 			return json(['msg' => '未查询到相关商品']);
 		}
 
-		$file = fopen("q.log", "a");
+		$file = fopen("log/q.log", "a");
 		fwrite($file, "【 $q 】" . date('Y-m-d H:i:s') . PHP_EOL);
 		fclose($file);
 
@@ -71,88 +71,80 @@ class Coupon extends Controller
 		$req->setText("领券购物，快乐生活");
 		$req->setUrl($tpwd);
 		$resp = json_decode(json_encode($this->c->execute($req)), true);
-		$file = fopen("tpwd.log", "a");
+		$file = fopen("log/tpwd.log", "a");
 		fwrite($file, "【 " . $resp['data']['model'] . " 】" . date('Y-m-d H:i:s') . PHP_EOL);
 		fclose($file);
 		return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
 	}
 
-	// 生成淘礼金口令
-	// public function createtpwd($tpwd)
+	// 淘礼金使用情况
+	// function test()
 	// {
-	// 	$req = new \TbkDgVegasTljCreateRequest;
-	// 	$req->setAdzoneId("109652200299");
-	// 	$req->setItemId($tpwd);
-	// 	$req->setTotalNum(1);
-	// 	$req->setName("淘礼金来啦");
-	// 	$req->setUserTotalWinNumLimit("1");
-	// 	$req->setSecuritySwitch("true");
-	// 	$req->setPerFace(0.01);
-	// 	$req->setSendStartTime(date('Y-m-d H:i:s'));
-	// 	$req->setSendEndTime(date("Y-m-d 23:59:59"));
+	// 	$req = new \TbkDgVegasTljInstanceReportRequest;
+	// 	$req->setRightsId("3MTmZRsLCeO3uO%2F4WTtCiqJ7%2BkHL3AEW");
 	// 	$resp = json_decode(json_encode($this->c->execute($req)), true);
-	// 	$file = fopen("tlj.log", "a");
-	// 	fwrite($file, date('Y-m-d H:i:s') . PHP_EOL . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL);
-	// 	fclose($file);
-	// 	if ($resp['result']['success']) {
-	// 		return $this->createtpwd($resp['result']['model']['send_url']);
-	// 	} else {
-	// 		return isset($resp['sub_msg']) ? $resp['sub_msg'] : $resp['result']['msg_info'];
+	// 	print_r($resp);
+	// }
+
+	// 读取日志
+	// function test()
+	// {
+	// 	$url = fopen('tlj.log', 'rb');
+	// 	$i = 0;
+	// 	while (!feof($url)) {
+	// 		echo fgets($url).'<br>';
+	// 		$i++;
 	// 	}
 	// }
-	
-	// 查询选品库 
-	public function test1()
-	{
-		$req = new \TbkUatmFavoritesItemGetRequest;
-		$req->setPlatform("2");
-		$req->setPageSize("1");
-		$req->setAdzoneId("109652200299");
-		$req->setUnid("3456");
-		$req->setFavoritesId("19949525");
-		// $req->setPageNo("2");
-		$req->setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type");
 
-		$resp = json_decode(json_encode($this->c->execute($req)), true);
-		print_r($resp);
-		// return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
+	function test()
+	{
+		// $media = $this->http_request('https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=' . $this->getToken(), json_encode(['type' => 'image', 'offset' => 0, 'count' => 1]));
+		$media = $this->http_request('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' . $this->getToken(), json_encode(['touser' => 'ocgU7wwhYzsQAsZLflze7u0OPnE0', 'msgtype' => 'text', 'text' => ['content' => '消息回复 ocgU7wwhYzsQAsZLflze7u0OPnE0']]));
+		print_r(json_decode($media));
 	}
 
-	public function KeplerApi()
+	private function http_request($url, $data = array())
 	{
-		$jd = new \KeplerApi;
-		// $name ='jd.union.open.goods.jingfen.query';
-		// $data['goodsReq'] = [
-		// 	'eliteId' => 10
-		// ];
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+		// 我们在POST数据哦！
+		curl_setopt($ch, CURLOPT_POST, 1);
+		// 把post的变量加上
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		return $output;
+	}
 
-		// $name = 'jd.union.open.promotion.common.get';
-		// $data['promotionCodeReq']=[
-		// 	'materialId'=> 'https://item.jd.com/58559777928.html',
-		// 	'siteId'=> '1916100763',
-		// ];
-
-		// $name = 'jd.union.open.goods.promotiongoodsinfo.query';
-		// $data['skuIds'] = '58559777928';
-
-		$name = 'jd.union.open.promotion.byunionid.get';
-		$data['promotionCodeReq'] = [
-			'materialId' => 'https://item.jd.com/58559777928.html',
-			'siteId' => '1916100763',
-		];
-
-		// $data['skuIds'] = [
-		// 	'pageNo' => 1,
-		// 	'pageSize' => 20,
-		// 	'type' => 1,
-		// 	'time' => date('YmdHm'),
-		// ];
-
-
-		print_r($data);
-		// exit;
-
-		$req = $jd->GetKelperApiData($name, $data);
-		print_r(json_decode($req, true));
+	private function getToken()
+	{
+		$data = json_decode(file_get_contents('access_token.json'), true);
+		if ($data['expire_time'] < time()) {
+			$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" . config('account')['appid'] . "&secret=" . config('account')['appsecret'];
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$res = curl_exec($ch);
+			if (curl_errno($ch)) {
+				var_dump(curl_error($ch));
+			}
+			curl_close($ch);
+			$arr = json_decode($res, true);
+			$access_token = $arr['access_token'];
+			$data = ['expire_time' => time() + 7000, 'access_token' => $access_token];
+			//存入文件
+			$fp = fopen("log/access_token.json", "w");
+			fwrite($fp, json_encode($data));
+			fclose($fp);
+		} else {
+			$access_token = $data['access_token'];
+		}
+		return $access_token;
 	}
 }

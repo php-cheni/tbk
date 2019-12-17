@@ -238,4 +238,7 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    // 淘礼金红包
+    'coupon'                 => true,
 ];

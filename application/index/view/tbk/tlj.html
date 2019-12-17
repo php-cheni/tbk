@@ -63,9 +63,10 @@
 	<div class="col-xs-12">
 	<form class="form-horizontal layui-form" role="form">
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">商品id</label>
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">商品</label>
 			<div class="col-sm-9">
-				<input type="number" name="skuid"" lay-verify="required" id="form-field-1" class="col-xs-10 col-sm-5">
+				<!-- <input type="number" name="skuid" lay-verify="required" id="form-field-1" class="col-xs-10 col-sm-5"> -->
+				<textarea rows="8" name="skuid" maxlength="200"  class="col-xs-10 col-sm-5" style="padding: 5px;"></textarea>
 			</div>
 		</div>
 
@@ -79,7 +80,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">数量</label>
 			<div class="col-sm-9">
-				<input type="number" name="num"" lay-verify="required" step="1" id="form-field-1" class="col-xs-10 col-sm-5">
+				<input type="number" name="num" lay-verify="required" step="1" id="form-field-1" class="col-xs-10 col-sm-5">
 			</div>
 		</div>
 
@@ -130,7 +131,7 @@ var form = layui.form;
 form.on('submit(createtlj)', function(data){
 	var load=layer.msg('请求中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
-	    url: "{:url('tbk/tlj')}",
+	    url: "{:url('tbk/createtlj')}",
 	    type: "POST",
 	    dataType:"json",
 	    data:$("form").serialize(),

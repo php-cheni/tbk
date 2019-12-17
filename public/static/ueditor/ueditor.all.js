@@ -22602,6 +22602,7 @@ UE.plugins['basestyle'] = function(){
             }
         });
     });
+    
     for ( var style in basestyles ) {
         (function( cmd, tagNames ) {
             me.commands[cmd] = {

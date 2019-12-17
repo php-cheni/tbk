@@ -48,7 +48,7 @@
     var clipboard = new ClipboardJS('.copybtn');
 
     clipboard.on('success', function (e) {
-        alert('复制成功，请打开淘宝');
+        layer.msg('复制成功，请打开淘宝', { icon: 1, time: 1000 });
     });
 
     function GetQueryString(name) {
@@ -59,7 +59,7 @@
         return null;
     }
 
-    let q = GetQueryString('q');
+    let q = GetQueryString('q') ? GetQueryString('q') : '';
     let p = GetQueryString('p') ? GetQueryString('p') : 1;
     $('input:first').val(q);
     var load = layer.msg('正在查询...', { icon: 16, shade: [0.1, '#fff'], time: false });
@@ -71,7 +71,7 @@
             if (data.success) {
                 // layer.msg(data.success, { icon: 1, time: 1000 });
                 $.each(data.data, function (index, val) {
-                    $('.goods ul').append('<li><div><a href="' + val.coupon_share_url + '"><img src="' + val.pict_url + '" width="100%"></a><p><a href="' + val.coupon_share_url + '">' + val.title + '</a></p><b>￥' + val.zk_final_price + '</b>&nbsp;<b>￥' + val.price + '</b><span><i class="iconfont icon-youhuiquan"></i>￥' + val.coupon_amount + '</span><p></p><span>月销：' + val.volume + '</span><span>' + val.shop_title + '</span><button class="copybtn" onclick="copytpwd(\'' + val.coupon_share_url + '\', ' + val.num_iid + ',this)";>生 成 淘 口 令</button></div></li>');
+                    $('.goods ul').append('<li><div><a href="' + val.coupon_share_url + '"><img src="' + val.pict_url + '" width="100%"></a><p><a href="' + val.coupon_share_url + '">' + val.short_title + '</a></p><b>￥' + val.zk_final_price + '</b>&nbsp;<b>￥' + val.price + '</b><span><i class="iconfont icon-youhuiquan"></i>￥' + val.coupon_amount + '</span><p></p><span>月销：' + val.volume + '</span><span>' + val.shop_title + '</span><button class="copybtn" onclick="copytpwd(\'' + val.coupon_share_url + '\', ' + val.num_iid + ',this)";>生 成 淘 口 令</button></div></li>');
                 });
                 $('.php54-page ul').html(data.page);
             } else {
@@ -91,8 +91,7 @@
                         url: "{:url('Coupon/createtpwd')}?tpwd=https:" + url,
                         dataType: "json",
                         success: function (data) {
-                            $('.copybtn').attr('data-clipboard-text', data);
-                            $(obj).text('点击复制：' + data);
+                            $(obj).attr('data-clipboard-text', data).text('点击复制：' + data);
                         }
                     });
                 }

@@ -201,4 +201,10 @@ class Power extends Common{
             return $this->fetch();
         }
     }
+    
+    public function delpower(){
+        $result=Db::name('menu')->delete(input('id'));
+        $result=$result?['success'=>'已经删除成功！']:['error'=>'额...删除失败了！'];
+        return json($result);
+    }
 }

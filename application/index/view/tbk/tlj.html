@@ -79,7 +79,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width: 70px;">数量</label>
 			<div class="col-sm-9">
-				<input type="number" name="num"" lay-verify="required" step="1" id="form-field-1" class="col-xs-10 col-sm-5">
+				<input type="number" name="num" lay-verify="required" step="1" id="form-field-1" class="col-xs-10 col-sm-5">
 			</div>
 		</div>
 
@@ -130,7 +130,7 @@ var form = layui.form;
 form.on('submit(createtlj)', function(data){
 	var load=layer.msg('请求中...', {icon:16,shade:[0.1, '#fff'],time:false });
 	$.ajax({
-	    url: "{:url('tbk/tlj')}",
+	    url: "{:url('tbk/createtlj')}",
 	    type: "POST",
 	    dataType:"json",
 	    data:$("form").serialize(),

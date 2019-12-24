@@ -102,20 +102,12 @@ class Coupon extends Controller
 	// }
 	
 	// 查询选品库 
-	public function test1()
+	public function test()
 	{
-		$req = new \TbkUatmFavoritesItemGetRequest;
-		$req->setPlatform("2");
-		$req->setPageSize("1");
-		$req->setAdzoneId("109652200299");
-		$req->setUnid("3456");
-		$req->setFavoritesId("19949525");
-		// $req->setPageNo("2");
-		$req->setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type");
-
+		$req = new \TbkDgNewuserOrderGetRequest;
+		$req->setActivityId("120013_12");
 		$resp = json_decode(json_encode($this->c->execute($req)), true);
 		print_r($resp);
-		// return empty($resp['data']['model']) ? "系统出现错误" : $resp['data']['model'];
 	}
 
 	public function KeplerApi()
